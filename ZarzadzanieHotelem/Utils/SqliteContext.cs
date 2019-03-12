@@ -13,26 +13,37 @@ namespace ZarzadzanieHotelem.Utils
 {
     public class SqliteContext : DbContext
     {
-
+        /// <summary>
+        /// Standard constructor of the DbContext with default Connection String.
+        /// It points to the D:\test.sqlite
+        /// </summary>
+        /// <param name="connString">
+        /// Connection string or its name in App.config
+        /// </param>
         public SqliteContext(string connString = "testDb"):
             base(connString)
         {
         }
 
+        /// <summary>
+        /// Implemented for the automated DB creation if does not exist.
+        /// </summary>
+        /// <param name="modelBuilder">
+        /// Default Param
+        /// </param>
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             var SqliteConnectionInitializer = new SqliteCreateDatabaseIfNotExists<SqliteContext>(modelBuilder);
             Database.SetInitializer(SqliteConnectionInitializer);
         }
 
-        //public DbSet<TestData> TestDatas { get; set; }
-        //public DbSet<Cleaning> Cleanings { get; set; }
+        public DbSet<Cleaning> Cleanings { get; set; }
         public DbSet<Customer> Customers { get; set; }
-        //public DbSet<Equipment> Equipments { get; set; }
-        //public DbSet<EquipmentPerRoom> EquipmentPerRooms { get; set; }
-        //public DbSet<ParkingSlot> ParkingSlots { get; set; }
+        public DbSet<Equipment> Equipments { get; set; }
+        public DbSet<EquipmentPerRoom> EquipmentPerRooms { get; set; }
+        public DbSet<ParkingSlot> ParkingSlots { get; set; }
         public DbSet<Reservation> Reservations { get; set; }
         public DbSet<Room> Rooms { get; set; }
-        //public DbSet<Worker> Workers { get; set; }
+        public DbSet<Worker> Workers { get; set; }
     }
 }

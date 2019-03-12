@@ -10,6 +10,10 @@ namespace ZarzadzanieHotelem.Models
 {
     public class Reservation
     {
+        public Reservation()
+        {
+            this.ParkingReservation = new HashSet<ParkingReservation>();
+        }
         [Key]
         public int Id { get; set; }
         public int IdCustomer { get; set; }
@@ -21,5 +25,7 @@ namespace ZarzadzanieHotelem.Models
         public virtual Customer Customer { get; set; }
         [ForeignKey("IdRoom")]
         public virtual Room Room { get; set; }
+
+        public virtual ICollection<ParkingReservation> ParkingReservation { get; set; }
     }
 }
