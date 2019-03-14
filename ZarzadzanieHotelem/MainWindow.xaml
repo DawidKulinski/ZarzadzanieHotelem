@@ -7,6 +7,36 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100" />
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <StackPanel x:Name="Menu" Width="auto">
+            <StackPanel.Resources>
+                <Style TargetType="TextBlock">
+                    <Setter Property="HorizontalAlignment" Value="Center" />
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="TextBlock.TextDecorations" Value="Underline" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </StackPanel.Resources>
+            <TextBlock MouseLeftButtonDown="PokojMenuCollapse">Pokój</TextBlock>
+            <Separator Height="5" Width="Auto" />
+            <StackPanel x:Name="PokojMenu" Width="100">
+                <TextBlock>Dodaj</TextBlock>
+                <TextBlock>Usuń</TextBlock>
+                <TextBlock>Modyfikuj</TextBlock>
+                <Separator Height="5" Width="Auto" />
+            </StackPanel>
+            <TextBlock>Menu 3</TextBlock>
+        </StackPanel>
+
+        <Grid Grid.Column="1" Background="LightGray">
+            <Button x:Name="ExapndCollapse" Content="&lt;" Click="Collapse" />
+        </Grid>
     </Grid>
 </Window>

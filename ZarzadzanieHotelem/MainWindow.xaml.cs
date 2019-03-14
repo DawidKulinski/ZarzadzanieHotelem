@@ -24,5 +24,22 @@ namespace ZarzadzanieHotelem
         {
             InitializeComponent();
         }
+
+        private void Collapse(object sender, RoutedEventArgs e)
+        {
+            this.Menu.Visibility = this.Menu.Visibility == Visibility.Visible
+                                            ? Visibility.Collapsed
+                                            : Visibility.Visible;
+            this.ExapndCollapse.Content = this.Menu.Visibility == Visibility.Visible
+                                            ? this.ExapndCollapse.Content = "<"
+                                            : this.ExapndCollapse.Content = ">";
+        }
+
+        private void PokojMenuCollapse(object sender, RoutedEventArgs e)
+        {
+            this.PokojMenu.Visibility = this.PokojMenu.Visibility == Visibility.Visible
+                                            ? Visibility.Collapsed
+                                            : Visibility.Visible;
+        }
     }
 }
