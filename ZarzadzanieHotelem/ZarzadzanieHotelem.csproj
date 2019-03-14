@@ -81,6 +81,7 @@
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\Equipment.cs" />
     <Compile Include="Models\EquipmentPerRoom.cs" />
+    <Compile Include="Models\ParkingReservation.cs" />
     <Compile Include="Models\ParkingSlot.cs" />
     <Compile Include="Models\Reservation.cs" />
     <Compile Include="Models\Room.cs" />
