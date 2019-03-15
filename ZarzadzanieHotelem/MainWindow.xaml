@@ -61,6 +61,12 @@
 
             <Grid x:Name="Rezerwacje" HorizontalAlignment="Stretch" Visibility="Collapsed">
                 <DataGrid x:Name="RezerwacjeDG" HorizontalAlignment="Left" Height="auto" Margin="0,0,0,0" Width="550">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Pokój" Binding="{Binding Path=IdRoom}"/>
+                        <DataGridTextColumn Header="Klient" Binding="{Binding Path=IdCustomer}"/>
+                        <DataGridTextColumn Header="Data od" Binding="{Binding Path=StartTime}"/>
+                        <DataGridTextColumn Header="Data do" Binding="{Binding Path=StopTime}"/>
+                    </DataGrid.Columns>
                     <DataGrid.ContextMenu>
                         <ContextMenu>
                             <MenuItem Header="Modyfikuj" Click="RezerwacjeDGMenuMod" />
@@ -80,7 +86,7 @@
                 <DatePicker x:Name="RezerwacjeStartDate"/>
                 <TextBlock><Run Text="Koniec"/></TextBlock>
                 <DatePicker x:Name="RezerwacjeEndDate"/>
-                <Button Content="Dodaj" Click="RezerwacjeAddButton"/>
+                <Button x:Name="DodajModyfikujButton" Content="Dodaj" Click="RezerwacjeAddButton"/>
             </StackPanel>
         </Grid>
     </Grid>
