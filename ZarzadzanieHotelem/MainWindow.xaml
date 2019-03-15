@@ -74,11 +74,11 @@
             </Grid>
             <StackPanel x:Name="RezerwacjeAdd" Visibility="Collapsed">
                 <TextBlock>IDrezerwacji</TextBlock>
-                <TextBox Height="23" TextWrapping="Wrap" Text="TextBox"/>
+                <TextBox Height="23" TextWrapping="Wrap" Text="" x:Name="RezAddIDR"/>
                 <TextBlock>IDCustomera</TextBlock>
-                <TextBox Height="23" TextWrapping="Wrap" Text="TextBox"/>
+                <TextBox Height="23" TextWrapping="Wrap" Text="" x:Name="RezAddIDC"/>
                 <TextBlock>IDPokoju</TextBlock>
-                <TextBox Height="23" TextWrapping="Wrap" Text="TextBox"/>
+                <TextBox Height="23" TextWrapping="Wrap" Text="" x:Name="RezAddIDP"/>
                 <TextBlock>Start</TextBlock>
                 <DatePicker x:Name="RezerwacjeStartDate"/>
                 <TextBlock>Koniec</TextBlock>
