@@ -41,7 +41,6 @@
         <Grid Grid.Column="1">
             <Button x:Name="ExapndCollapse" Content="&lt;" Click="Collapse" />
         </Grid>
-
         <Grid Grid.Column="2">
             <Grid x:Name="Pokoje" HorizontalAlignment="Stretch" Visibility="Collapsed">
                 <DataGrid HorizontalAlignment="Left" Height="auto" Margin="0,0,0,0" Width="auto">
@@ -57,13 +56,11 @@
                 </Viewbox>
             </Grid>
             <Grid x:Name="PokojeAdd" HorizontalAlignment="Stretch" Visibility="Collapsed">
-                <DataGrid HorizontalAlignment="Left" Height="auto" Margin="0,0,0,0" Width="auto">
-                    
-                </DataGrid>
+                <DataGrid HorizontalAlignment="Left" Height="auto" Margin="0,0,0,0" Width="auto"/>
             </Grid>
 
             <Grid x:Name="Rezerwacje" HorizontalAlignment="Stretch" Visibility="Collapsed">
-                <DataGrid x:Name="RezerwacjeDG" HorizontalAlignment="Left" Height="auto" Margin="0,0,0,0" Width="auto">
+                <DataGrid x:Name="RezerwacjeDG" HorizontalAlignment="Left" Height="auto" Margin="0,0,0,0" Width="550">
                     <DataGrid.ContextMenu>
                         <ContextMenu>
                             <MenuItem Header="Modyfikuj" Click="RezerwacjeDGMenuMod" />
@@ -73,17 +70,17 @@
                 </DataGrid>
             </Grid>
             <StackPanel x:Name="RezerwacjeAdd" Visibility="Collapsed">
-                <TextBlock>IDrezerwacji</TextBlock>
+                <TextBlock><Run Text="IDrezerwacji"/></TextBlock>
                 <TextBox Height="23" TextWrapping="Wrap" Text="" x:Name="RezAddIDR"/>
-                <TextBlock>IDCustomera</TextBlock>
+                <TextBlock><Run Text="IDCustomera"/></TextBlock>
                 <TextBox Height="23" TextWrapping="Wrap" Text="" x:Name="RezAddIDC"/>
-                <TextBlock>IDPokoju</TextBlock>
+                <TextBlock><Run Text="IDPokoju"/></TextBlock>
                 <TextBox Height="23" TextWrapping="Wrap" Text="" x:Name="RezAddIDP"/>
-                <TextBlock>Start</TextBlock>
+                <TextBlock><Run Text="Start"/></TextBlock>
                 <DatePicker x:Name="RezerwacjeStartDate"/>
-                <TextBlock>Koniec</TextBlock>
+                <TextBlock><Run Text="Koniec"/></TextBlock>
                 <DatePicker x:Name="RezerwacjeEndDate"/>
-                <Button Content="Dodaj" Click="RezerwacjeAddButton"></Button>
+                <Button Content="Dodaj" Click="RezerwacjeAddButton"/>
             </StackPanel>
         </Grid>
     </Grid>
