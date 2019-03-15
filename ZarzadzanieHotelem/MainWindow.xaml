@@ -4,15 +4,26 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ZarzadzanieHotelem"
+        xmlns:local1="clr-namespace:ZarzadzanieHotelem.Views"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="system Zarządzania Zasobami Hotelowymi" Height="450" Width="800">
+
+    <Window.Resources>
+        <DataTemplate x:Key="RezerwacjeView" DataType="{x:Type local1:RezerwacjeView}">
+            <local1:RezerwacjeView DataContext="{Binding}"/>
+        </DataTemplate>
+        <DataTemplate x:Key="RezerwacjeAddView" DataType="{x:Type local1:RezerwacjeAddView}">
+            <local1:RezerwacjeAddView DataContext="{Binding}"/>
+        </DataTemplate>
+    </Window.Resources>
+    
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="100" />
             <ColumnDefinition Width="10" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-
+        <Grid Grid.Column="0">
         <StackPanel x:Name="Menu" Width="auto">
             <StackPanel.Resources>
                 <Style TargetType="TextBlock">
@@ -24,10 +35,10 @@
                     </Style.Triggers>
                 </Style>
             </StackPanel.Resources>
-            <TextBlock MouseLeftButtonDown="PokojMenuCollapse">Pokój</TextBlock>
+            <TextBlock MouseLeftButtonDown="PokojMenuClick">Pokój</TextBlock>
             <Separator Height="5" Width="Auto" />
-            <StackPanel x:Name="PokojMenu" Width="100">
-                <TextBlock>Dodaj</TextBlock>
+            <StackPanel x:Name="PokojMenu"  Width="100">
+                    <TextBlock MouseLeftButtonDown="PokojMenuAddClick">Dodaj</TextBlock>
                 <Separator Height="5" Width="Auto" />
             </StackPanel>
             <TextBlock MouseLeftButtonDown="RezerwacjeMenuClick">Rezerwacje pokoi</TextBlock>
@@ -37,57 +48,16 @@
                 <Separator Height="5" Width="Auto" />
             </StackPanel>
         </StackPanel>
+        </Grid>
 
         <Grid Grid.Column="1">
-            <Button x:Name="ExapndCollapse" Content="&lt;" Click="Collapse" />
-        </Grid>
-        <Grid Grid.Column="2">
-            <Grid x:Name="Pokoje" HorizontalAlignment="Stretch" Visibility="Collapsed">
-                <DataGrid HorizontalAlignment="Left" Height="auto" Margin="0,0,0,0" Width="auto">
-                    <DataGrid.ContextMenu>
-                        <ContextMenu>
-                            <MenuItem Header="Modyfikuj" Click="PokojeDGMenuMod" />
-                            <MenuItem Header="Usuń" Click="PokojeDGMenuDel" />
-                        </ContextMenu>
-                    </DataGrid.ContextMenu>
-                </DataGrid>
-                <Viewbox>
-                    <Calendar HorizontalAlignment="Left" Height="auto" Margin="0,0,0,0" Width="auto"/>
-                </Viewbox>
-            </Grid>
-            <Grid x:Name="PokojeAdd" HorizontalAlignment="Stretch" Visibility="Collapsed">
-                <DataGrid HorizontalAlignment="Left" Height="auto" Margin="0,0,0,0" Width="auto"/>
-            </Grid>
-
-            <Grid x:Name="Rezerwacje" HorizontalAlignment="Stretch" Visibility="Collapsed">
-                <DataGrid x:Name="RezerwacjeDG" HorizontalAlignment="Left" Height="auto" Margin="0,0,0,0" Width="550">
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Header="Pokój" Binding="{Binding Path=IdRoom}"/>
-                        <DataGridTextColumn Header="Klient" Binding="{Binding Path=IdCustomer}"/>
-                        <DataGridTextColumn Header="Data od" Binding="{Binding Path=StartTime}"/>
-                        <DataGridTextColumn Header="Data do" Binding="{Binding Path=StopTime}"/>
-                    </DataGrid.Columns>
-                    <DataGrid.ContextMenu>
-                        <ContextMenu>
-                            <MenuItem Header="Modyfikuj" Click="RezerwacjeDGMenuMod" />
-                            <MenuItem Header="Usuń" Click="RezerwacjeDGMenuDel" />
-                        </ContextMenu>
-                    </DataGrid.ContextMenu>
-                </DataGrid>
-            </Grid>
-            <StackPanel x:Name="RezerwacjeAdd" Visibility="Collapsed">
-                <TextBlock><Run Text="IDrezerwacji"/></TextBlock>
-                <TextBox Height="23" TextWrapping="Wrap" Text="" x:Name="RezAddIDR"/>
-                <TextBlock><Run Text="IDCustomera"/></TextBlock>
-                <TextBox Height="23" TextWrapping="Wrap" Text="" x:Name="RezAddIDC"/>
-                <TextBlock><Run Text="IDPokoju"/></TextBlock>
-                <TextBox Height="23" TextWrapping="Wrap" Text="" x:Name="RezAddIDP"/>
-                <TextBlock><Run Text="Start"/></TextBlock>
-                <DatePicker x:Name="RezerwacjeStartDate"/>
-                <TextBlock><Run Text="Koniec"/></TextBlock>
-                <DatePicker x:Name="RezerwacjeEndDate"/>
-                <Button x:Name="DodajModyfikujButton" Content="Dodaj" Click="RezerwacjeAddButton"/>
+            <StackPanel Orientation="Horizontal">
+                <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
             </StackPanel>
+        </Grid>
+
+        <Grid Grid.Column="2">
+            <ContentControl Content="{Binding}"/>
         </Grid>
     </Grid>
 </Window>

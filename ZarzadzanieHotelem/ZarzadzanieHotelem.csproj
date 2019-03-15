@@ -89,6 +89,18 @@
     <Compile Include="Models\TestData.cs" />
     <Compile Include="Models\Worker.cs" />
     <Compile Include="Utils\SqliteContext.cs" />
+    <Compile Include="Views\PokojeAddView.xaml.cs">
+      <DependentUpon>PokojeAddView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PokojeView.xaml.cs">
+      <DependentUpon>PokojeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RezerwacjeView.xaml.cs">
+      <DependentUpon>RezerwacjeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RezerwacjeAddView.xaml.cs">
+      <DependentUpon>RezerwacjeAddView.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -101,6 +113,22 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\PokojeAddView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PokojeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\RezerwacjeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\RezerwacjeAddView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
