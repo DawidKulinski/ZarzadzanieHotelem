@@ -87,6 +87,7 @@
     <Compile Include="Models\Room.cs" />
     <Compile Include="Models\TestData.cs" />
     <Compile Include="Models\Worker.cs" />
+    <Compile Include="Utils\RoomScheduler.cs" />
     <Compile Include="Utils\SqliteContext.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
