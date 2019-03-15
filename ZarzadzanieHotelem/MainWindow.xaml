@@ -28,15 +28,63 @@
             <Separator Height="5" Width="Auto" />
             <StackPanel x:Name="PokojMenu" Width="100">
                 <TextBlock>Dodaj</TextBlock>
-                <TextBlock>Usuń</TextBlock>
-                <TextBlock>Modyfikuj</TextBlock>
                 <Separator Height="5" Width="Auto" />
             </StackPanel>
-            <TextBlock>Menu 3</TextBlock>
+            <TextBlock MouseLeftButtonDown="RezerwacjeMenuClick">Rezerwacje pokoi</TextBlock>
+            <Separator Height="5" Width="Auto" />
+            <StackPanel x:Name="RezerwacjeMenu" Width="100">
+                <TextBlock  MouseLeftButtonDown="RezerwacjeMenuAddClick">Dodaj</TextBlock>
+                <Separator Height="5" Width="Auto" />
+            </StackPanel>
         </StackPanel>
 
-        <Grid Grid.Column="1" Background="LightGray">
+        <Grid Grid.Column="1">
             <Button x:Name="ExapndCollapse" Content="&lt;" Click="Collapse" />
+        </Grid>
+
+        <Grid Grid.Column="2">
+            <Grid x:Name="Pokoje" HorizontalAlignment="Stretch" Visibility="Collapsed">
+                <DataGrid HorizontalAlignment="Left" Height="auto" Margin="0,0,0,0" Width="auto">
+                    <DataGrid.ContextMenu>
+                        <ContextMenu>
+                            <MenuItem Header="Modyfikuj" Click="PokojeDGMenuMod" />
+                            <MenuItem Header="Usuń" Click="PokojeDGMenuDel" />
+                        </ContextMenu>
+                    </DataGrid.ContextMenu>
+                </DataGrid>
+                <Viewbox>
+                    <Calendar HorizontalAlignment="Left" Height="auto" Margin="0,0,0,0" Width="auto"/>
+                </Viewbox>
+            </Grid>
+            <Grid x:Name="PokojeAdd" HorizontalAlignment="Stretch" Visibility="Collapsed">
+                <DataGrid HorizontalAlignment="Left" Height="auto" Margin="0,0,0,0" Width="auto">
+                    
+                </DataGrid>
+            </Grid>
+
+            <Grid x:Name="Rezerwacje" HorizontalAlignment="Stretch" Visibility="Collapsed">
+                <DataGrid x:Name="RezerwacjeDG" HorizontalAlignment="Left" Height="auto" Margin="0,0,0,0" Width="auto">
+                    <DataGrid.ContextMenu>
+                        <ContextMenu>
+                            <MenuItem Header="Modyfikuj" Click="RezerwacjeDGMenuMod" />
+                            <MenuItem Header="Usuń" Click="RezerwacjeDGMenuDel" />
+                        </ContextMenu>
+                    </DataGrid.ContextMenu>
+                </DataGrid>
+            </Grid>
+            <StackPanel x:Name="RezerwacjeAdd" Visibility="Collapsed">
+                <TextBlock>IDrezerwacji</TextBlock>
+                <TextBox Height="23" TextWrapping="Wrap" Text="TextBox"/>
+                <TextBlock>IDCustomera</TextBlock>
+                <TextBox Height="23" TextWrapping="Wrap" Text="TextBox"/>
+                <TextBlock>IDPokoju</TextBlock>
+                <TextBox Height="23" TextWrapping="Wrap" Text="TextBox"/>
+                <TextBlock>Start</TextBlock>
+                <DatePicker x:Name="RezerwacjeStartDate"/>
+                <TextBlock>Koniec</TextBlock>
+                <DatePicker x:Name="RezerwacjeEndDate"/>
+                <Button Content="Dodaj" Click="RezerwacjeAddButton"></Button>
+            </StackPanel>
         </Grid>
     </Grid>
 </Window>

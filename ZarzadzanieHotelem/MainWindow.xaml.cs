@@ -35,11 +35,48 @@ namespace ZarzadzanieHotelem
                                             : this.ExapndCollapse.Content = ">";
         }
 
+        //Pokoje
         private void PokojMenuCollapse(object sender, RoutedEventArgs e)
         {
             this.PokojMenu.Visibility = this.PokojMenu.Visibility == Visibility.Visible
                                             ? Visibility.Collapsed
                                             : Visibility.Visible;
+            this.Pokoje.Visibility = this.Pokoje.Visibility == Visibility.Visible
+                                            ? Visibility.Collapsed
+                                            : Visibility.Visible;
+        }
+
+        private void PokojeDGMenuMod(object sender, RoutedEventArgs e)
+        {
+        }
+
+        private void PokojeDGMenuDel(object sender, RoutedEventArgs e)
+        {
+        }
+
+        //Rezerwacje 
+        private void RezerwacjeMenuClick(object sender, RoutedEventArgs e)
+        {
+            Rezerwacje.Visibility = Visibility.Visible;
+            RezerwacjeAdd.Visibility = Visibility.Collapsed;
+        }
+
+        private void RezerwacjeMenuAddClick(object sender, RoutedEventArgs e)
+        {
+            Rezerwacje.Visibility = Visibility.Collapsed;
+            RezerwacjeAdd.Visibility = Visibility.Visible;
+        }
+
+        private void RezerwacjeDGMenuMod(object sender, RoutedEventArgs e)
+        {
+        }
+
+        private void RezerwacjeDGMenuDel(object sender, RoutedEventArgs e)
+        {
+        }
+
+        private void RezerwacjeAddButton(object sender, RoutedEventArgs e)
+        {
         }
     }
 }
