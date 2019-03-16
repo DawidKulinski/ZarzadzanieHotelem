@@ -40,7 +40,7 @@ namespace ZarzadzanieHotelem.Views
 
             RezAddIDR.Text = reservation.Id.ToString();
             RezAddIDC.Text = reservation.IdCustomer.ToString();
-            RezAddIDR.Text = reservation.IdRoom.ToString();
+            RezAddIDP.Text = reservation.IdRoom.ToString();
             RezerwacjeStartDate.SelectedDate = reservation.StartTime;
             RezerwacjeEndDate.SelectedDate = reservation.StopTime;
             RezerwacjeAddModButton.Content = "Modyfikuj";
@@ -87,7 +87,7 @@ namespace ZarzadzanieHotelem.Views
                         MessageBox.Show(er.Message);
                     }
                 }
-                DataContext = new RezerwacjeView();
+                Application.Current.MainWindow.DataContext = new RezerwacjeView();
             }
             else
                 MessageBox.Show("Nie uzupełniono wszystkich pól.");
