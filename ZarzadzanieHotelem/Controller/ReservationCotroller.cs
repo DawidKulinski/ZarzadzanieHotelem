@@ -20,6 +20,16 @@ namespace ZarzadzanieHotelem.Controller
                 Room room = conn.Rooms.FirstOrDefault(p => p.Id == rez.IdRoom);
                 rez.Customer = cus ?? throw new Exception("Nie ma klienta o ID: " + rez.IdCustomer);
                 rez.Room = room ?? throw new Exception("Nie ma pokoju o ID: " + rez.IdRoom);
+
+                if (conn.Reservations.Any(p => p.IdRoom == rez.IdRoom && (p.StartTime == rez.StartTime || p.StartTime == rez.StopTime
+                || p.StopTime == rez.StopTime || p.StopTime == rez.StartTime
+                || (p.StartTime > rez.StartTime && p.StartTime < rez.StopTime)
+                || (p.StartTime < rez.StartTime && p.StopTime > rez.StartTime)
+                || (p.StartTime > rez.StartTime && p.StopTime < rez.StopTime)
+                || (p.StartTime < rez.StartTime && p.StopTime > rez.StopTime))))
+                    throw new Exception("W tym terminie pokój jest już zarezerwowany");
+
+
                 conn.Reservations.Add(rez);
 
                 conn.SaveChanges();
@@ -52,6 +62,14 @@ namespace ZarzadzanieHotelem.Controller
                     rezToChange.IdRoom = rez.IdRoom;
                     rezToChange.StartTime = rez.StartTime;
                     rezToChange.StopTime = rez.StopTime;
+
+                    if (conn.Reservations.Any(p => p.Id != rez.Id && p.IdRoom == rez.IdRoom && (p.StartTime == rez.StartTime || p.StartTime == rez.StopTime
+                         || p.StopTime == rez.StopTime || p.StopTime == rez.StartTime
+                         || (p.StartTime > rez.StartTime && p.StartTime < rez.StopTime)
+                         || (p.StartTime < rez.StartTime && p.StopTime > rez.StartTime)
+                         || (p.StartTime > rez.StartTime && p.StopTime < rez.StopTime)
+                         || (p.StartTime < rez.StartTime && p.StopTime > rez.StopTime))))
+                        throw new Exception("W tym terminie pokój jest już zarezerwowany, nie można zmienić terminu rezerwacji");
 
                     Customer cus = conn.Customers.FirstOrDefault(p => p.Id == rez.IdCustomer);
                     Room room = conn.Rooms.FirstOrDefault(p => p.Id == rez.IdRoom);
