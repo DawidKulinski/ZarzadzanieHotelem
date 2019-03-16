@@ -78,6 +78,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Controller\ReservationCotroller.cs" />
+    <Compile Include="Controller\RoomController.cs" />
     <Compile Include="Models\Cleaning.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\Equipment.cs" />

@@ -12,6 +12,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ZarzadzanieHotelem.Controller;
+using ZarzadzanieHotelem.Models;
+using ZarzadzanieHotelem.Utils;
 
 namespace ZarzadzanieHotelem.Views
 {
@@ -23,6 +26,14 @@ namespace ZarzadzanieHotelem.Views
         public PokojeView()
         {
             InitializeComponent();
+
+            using (var context = new SqliteContext())
+            {
+                context.Rooms.ToList()
+                    .ForEach(x=> PokojeDG.Items.Add(x));
+            }
+
+            PokojeDG.SelectionChanged += Row_SelectionChanged;
         }
 
         private void PokojeDGMenuAdd(object sender, RoutedEventArgs e) { Application.Current.MainWindow.DataContext = new PokojeAddView(); }
@@ -43,6 +54,25 @@ namespace ZarzadzanieHotelem.Views
             }
             else
                 MessageBox.Show("Nie wybrano elementu", "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
+        }
+
+        private void Row_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Kalendarz.BlackoutDates.Clear();
+            var RoomList = e.AddedItems;
+            if (RoomList != null)
+            {
+                foreach (Room item in RoomList)
+                {
+                    var Reservations = RoomController.GetReservations(item.Id);
+                    Reservations
+                        .ForEach(
+                            x=>Kalendarz
+                                .BlackoutDates
+                                .Add(new CalendarDateRange(x.Item1, x.Item2)));
+                }
+            }
+
         }
     }
 }
