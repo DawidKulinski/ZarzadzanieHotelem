@@ -33,7 +33,7 @@ namespace ZarzadzanieHotelem.Views
             SprzAddId.Text = cleaning.Id.ToString();
             SprzAddIdPokoju.Text = cleaning.IdRoom.ToString();
             SprzAddIdPracownika.Text = cleaning.IdWorker.ToString();
-            SprzStartDate.SelectedDate = cleaning.CleanTime;
+            SprzStartDate.Text = cleaning.CleanTime.ToString();
         }
 
         private void SprzatanieAddModBtnClick(object sender, RoutedEventArgs e)
