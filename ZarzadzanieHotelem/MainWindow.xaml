@@ -48,7 +48,21 @@
                 <TextBlock  MouseLeftButtonDown="RezerwacjeMenuAddClick">Dodaj</TextBlock>
                 <Separator Height="5" Width="Auto" />
             </StackPanel>
-        </StackPanel>
+            <TextBlock MouseLeftButtonDown="SprzatanieMenuClick">Sprzątanie</TextBlock>
+            <Separator Height="5" Width="Auto" />
+                <StackPanel x:Name="SprzatanieMenu" Width="100">
+                    <TextBlock  MouseLeftButtonDown="SprzatanieMenuAddClick">Dodaj</TextBlock>
+                    <Separator Height="5" Width="Auto" />
+                </StackPanel>
+                <TextBlock MouseLeftButtonDown="PracownicyMenuClick">Pracownicy</TextBlock>
+                <Separator Height="5" Width="Auto" />
+                <StackPanel x:Name="PracownicyMenu" Width="100">
+                    <TextBlock  MouseLeftButtonDown="PracownicyMenuAddClick">Dodaj</TextBlock>
+                    <Separator Height="5" Width="Auto" />
+                </StackPanel>
+            </StackPanel>
+            
+            
         </Grid>
 
         <Grid Grid.Column="1">

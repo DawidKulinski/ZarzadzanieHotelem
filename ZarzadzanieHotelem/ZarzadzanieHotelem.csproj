@@ -96,11 +96,23 @@
     <Compile Include="Views\PokojeView.xaml.cs">
       <DependentUpon>PokojeView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\PracownicyAddView.xaml.cs">
+      <DependentUpon>PracownicyAddView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PracownicyView.xaml.cs">
+      <DependentUpon>PracownicyView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\RezerwacjeView.xaml.cs">
       <DependentUpon>RezerwacjeView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\RezerwacjeAddView.xaml.cs">
       <DependentUpon>RezerwacjeAddView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SprzatanieAddView.xaml.cs">
+      <DependentUpon>SprzatanieAddView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SprzatanieView.xaml.cs">
+      <DependentUpon>SprzatanieView.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -122,11 +134,27 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\PracownicyAddView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PracownicyView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\RezerwacjeView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\RezerwacjeAddView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SprzatanieAddView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SprzatanieView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

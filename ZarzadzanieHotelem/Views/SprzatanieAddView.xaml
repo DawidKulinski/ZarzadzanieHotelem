@@ -1,0 +1,22 @@
+﻿<UserControl x:Class="ZarzadzanieHotelem.Views.SprzatanieAddView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ZarzadzanieHotelem.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="700">
+    <Grid>
+        <StackPanel>
+            <TextBlock><Run Text="Id"/></TextBlock>
+            <TextBox Height="23" TextWrapping="Wrap" Text="" x:Name="SprzAddId"/>
+            <TextBlock><Run Text="Id Pokoju"/></TextBlock>
+            <TextBox Height="23" TextWrapping="Wrap" Text="" x:Name="SprzAddIdPokoju"/>
+            <TextBlock><Run Text="Id Pracownika"/></TextBlock>
+            <TextBox Height="23" TextWrapping="Wrap" Text="" x:Name="SprzAddIdPracownika"/>
+            <TextBlock><Run Text="Czas"/></TextBlock>
+            <DatePicker x:Name="SprzStartDate"/>
+            <Button x:Name="SprzatanieAddModBtn" Content="Dodaj" Click="SprzatanieAddModBtnClick"/>
+        </StackPanel>
+    </Grid>
+</UserControl>
