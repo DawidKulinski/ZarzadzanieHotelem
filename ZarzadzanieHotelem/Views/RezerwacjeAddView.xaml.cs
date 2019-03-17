@@ -55,13 +55,20 @@ namespace ZarzadzanieHotelem.Views
                     int temp;
                     try
                     {
-                        _reservationController.Add(new Reservation
+                        if (RezerwacjeStartDate.SelectedDate.Value > RezerwacjeEndDate.SelectedDate.Value)
                         {
-                            IdCustomer = int.TryParse(RezAddIDC.Text, out temp) ? temp : 1,
-                            IdRoom = int.TryParse(RezAddIDP.Text, out temp) ? temp : 1,
-                            StartTime = RezerwacjeStartDate.SelectedDate.Value,
-                            StopTime = RezerwacjeEndDate.SelectedDate.Value
-                        });
+                            MessageBox.Show("Data zakończenia pobytu nie może być mniejsza niż rozpoczęcie pobytu.", "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
+                        }
+                        else
+                        {
+                            _reservationController.Add(new Reservation
+                            {
+                                IdCustomer = int.TryParse(RezAddIDC.Text, out temp) ? temp : 1,
+                                IdRoom = int.TryParse(RezAddIDP.Text, out temp) ? temp : 1,
+                                StartTime = RezerwacjeStartDate.SelectedDate.Value,
+                                StopTime = RezerwacjeEndDate.SelectedDate.Value
+                            });
+                        }
                     }
                     catch (Exception er)
                     {
@@ -90,7 +97,7 @@ namespace ZarzadzanieHotelem.Views
                 Application.Current.MainWindow.DataContext = new RezerwacjeView();
             }
             else
-                MessageBox.Show("Nie uzupełniono wszystkich pól.","Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Nie uzupełniono wszystkich pól.", "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
         }
 
         private bool IsReservationValid()

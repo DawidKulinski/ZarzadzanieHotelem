@@ -55,6 +55,11 @@ namespace ZarzadzanieHotelem.Controller
         {
             using (var conn = new SqliteContext(@"testDb"))
             {
+                if (rez.StartTime > rez.StopTime)
+                {
+                    throw new Exception("Data zakończenia pobytu nie może być mniejsza niż rozpoczęcie pobytu.");
+                }
+
                 Reservation rezToChange = conn.Reservations.Where(p => p.Id == rez.Id).FirstOrDefault();
                 if (rezToChange != null)
                 {
