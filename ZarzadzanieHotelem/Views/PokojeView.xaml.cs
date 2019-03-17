@@ -42,6 +42,8 @@ namespace ZarzadzanieHotelem.Views
         {
             if (PokojeDG.SelectedItem != null)
             {
+                RoomController.Delete(PokojeDG.SelectedItem as Room);
+                Application.Current.MainWindow.DataContext = new PokojeView();
             }
             else
                 MessageBox.Show("Nie wybrano elementu", "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -51,6 +53,7 @@ namespace ZarzadzanieHotelem.Views
         {
             if (PokojeDG.SelectedItem != null)
             {
+                Application.Current.MainWindow.DataContext = new PokojeAddView(PokojeDG.SelectedItem as Room);
             }
             else
                 MessageBox.Show("Nie wybrano elementu", "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);

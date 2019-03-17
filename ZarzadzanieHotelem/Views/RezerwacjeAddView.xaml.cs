@@ -65,7 +65,7 @@ namespace ZarzadzanieHotelem.Views
                     }
                     catch (Exception er)
                     {
-                        MessageBox.Show(er.Message);
+                        MessageBox.Show(er.Message, "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
                 }
                 else if (RezerwacjeAddModButton.Content.ToString() == "Modyfikuj")
@@ -84,13 +84,13 @@ namespace ZarzadzanieHotelem.Views
                     }
                     catch (Exception er)
                     {
-                        MessageBox.Show(er.Message);
+                        MessageBox.Show(er.Message, "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
                 }
                 Application.Current.MainWindow.DataContext = new RezerwacjeView();
             }
             else
-                MessageBox.Show("Nie uzupełniono wszystkich pól.");
+                MessageBox.Show("Nie uzupełniono wszystkich pól.","Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
         }
 
         private bool IsReservationValid()
