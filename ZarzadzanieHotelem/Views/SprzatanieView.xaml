@@ -16,6 +16,7 @@
                 <DataGridTextColumn Header="Id" Binding="{Binding Path=Id}"/>
                 <DataGridTextColumn Header="IdPokoju" Binding="{Binding Path=IdRoom}"/>
                 <DataGridTextColumn Header="IdPracownika" Binding="{Binding Path=IdWorker}"/>
+                <DataGridTextColumn Header="Data" Binding="{Binding Path=CleanTime}"/>
             </DataGrid.Columns>
             <DataGrid.ContextMenu>
                 <ContextMenu>

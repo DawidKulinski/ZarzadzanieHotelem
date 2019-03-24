@@ -1,17 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using ZarzadzanieHotelem.Controller;
 using ZarzadzanieHotelem.Models;
 
 namespace ZarzadzanieHotelem.Views
@@ -24,8 +14,10 @@ namespace ZarzadzanieHotelem.Views
         public SprzatanieAddView()
         {
             InitializeComponent();
-        }
 
+            SprzatanieAddModBtn.Content = "Dodaj";
+        }
+        
         public SprzatanieAddView(Cleaning cleaning)
         {
             InitializeComponent();
@@ -34,14 +26,50 @@ namespace ZarzadzanieHotelem.Views
             SprzAddIdPokoju.Text = cleaning.IdRoom.ToString();
             SprzAddIdPracownika.Text = cleaning.IdWorker.ToString();
             SprzStartDate.SelectedDate = cleaning.CleanTime;
+
+            SprzatanieAddModBtn.Content = "Modyfikuj";
         }
 
         private void SprzatanieAddModBtnClick(object sender, RoutedEventArgs e)
         {
             if (!String.IsNullOrWhiteSpace(SprzAddIdPokoju.Text)
-                & !String.IsNullOrWhiteSpace(SprzAddIdPracownika.Text))
+                && SprzStartDate.SelectedDate != null)
             {
-
+                if (SprzatanieAddModBtn.Content.ToString() == "Dodaj")
+                {
+                    try
+                    {
+                        CleaningController.Add(new Cleaning
+                        {
+                            Id = int.TryParse(SprzAddId.Text, out int temp) ? temp : 1,
+                            IdRoom = int.TryParse(SprzAddIdPokoju.Text, out temp) ? temp : 1,
+                            IdWorker = int.TryParse(SprzAddIdPracownika.Text, out temp) ? temp : -1,
+                            CleanTime = SprzStartDate.SelectedDate.Value
+                        });
+                    }
+                    catch (Exception er)
+                    {
+                        MessageBox.Show(er.Message, "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                }
+                else
+                {
+                    try
+                    {
+                        CleaningController.Edit(new Cleaning
+                        {
+                            Id = int.TryParse(SprzAddId.Text, out int temp) ? temp : throw new Exception(),
+                            IdRoom = int.TryParse(SprzAddIdPokoju.Text, out temp) ? temp : throw new Exception(),
+                            IdWorker = int.TryParse(SprzAddIdPracownika.Text, out temp) ? temp : throw new Exception(),
+                            CleanTime = SprzStartDate.SelectedDate.Value
+                        });
+                    }
+                    catch (Exception er)
+                    {
+                        MessageBox.Show(er.Message, "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                }
+                Application.Current.MainWindow.DataContext = new SprzatanieView();
             }
             else
                 MessageBox.Show("Nie uzupełniono wszystkich pól.", "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
