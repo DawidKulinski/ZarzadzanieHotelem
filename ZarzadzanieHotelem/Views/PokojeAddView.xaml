@@ -8,8 +8,10 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <StackPanel x:Name="PokojAdd">
-            <TextBlock><Run Text="IDPokoju"/></TextBlock>
-            <TextBox Height="23" TextWrapping="Wrap" Text="" x:Name="RoomAddIDP"/>
+            <StackPanel x:Name="IdStack">
+                <TextBlock><Run Text="IDPokoju"/></TextBlock>
+                <TextBox Height="23" TextWrapping="Wrap" Text="" x:Name="RoomAddIDP"/>
+            </StackPanel>
             <TextBlock><Run Text="Numer Pokoju"/></TextBlock>
             <TextBox Height="23" TextWrapping="Wrap" Text="" x:Name="RoomAddRoomNumber"/>
             <TextBlock><Run Text="Standard Pokoju"/></TextBlock>

@@ -8,8 +8,10 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <StackPanel x:Name="RezerwacjeAdd">
-            <TextBlock><Run Text="IDrezerwacji"/></TextBlock>
-            <TextBox Height="23" TextWrapping="Wrap" Text="" x:Name="RezAddIDR"/>
+            <StackPanel x:Name="IdStack">
+                <TextBlock><Run Text="IDrezerwacji"/></TextBlock>
+                <TextBox Height="23" TextWrapping="Wrap" Text="" x:Name="RezAddIDR"/>
+            </StackPanel>
             <TextBlock><Run Text="IDCustomera"/></TextBlock>
             <TextBox Height="23" TextWrapping="Wrap" Text="" x:Name="RezAddIDC"/>
             <TextBlock><Run Text="IDPokoju"/></TextBlock>

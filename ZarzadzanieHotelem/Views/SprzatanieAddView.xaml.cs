@@ -16,6 +16,7 @@ namespace ZarzadzanieHotelem.Views
             InitializeComponent();
 
             SprzatanieAddModBtn.Content = "Dodaj";
+            IdStack.Visibility = Visibility.Collapsed;
         }
         
         public SprzatanieAddView(Cleaning cleaning)
@@ -28,6 +29,7 @@ namespace ZarzadzanieHotelem.Views
             SprzStartDate.SelectedDate = cleaning.CleanTime;
 
             SprzatanieAddModBtn.Content = "Modyfikuj";
+            IdStack.Visibility = Visibility.Visible;
         }
 
         private void SprzatanieAddModBtnClick(object sender, RoutedEventArgs e)
@@ -41,8 +43,7 @@ namespace ZarzadzanieHotelem.Views
                     {
                         CleaningController.Add(new Cleaning
                         {
-                            Id = int.TryParse(SprzAddId.Text, out int temp) ? temp : 1,
-                            IdRoom = int.TryParse(SprzAddIdPokoju.Text, out temp) ? temp : 1,
+                            IdRoom = int.TryParse(SprzAddIdPokoju.Text, out int temp) ? temp : 1,
                             IdWorker = int.TryParse(SprzAddIdPracownika.Text, out temp) ? temp : -1,
                             CleanTime = SprzStartDate.SelectedDate.Value
                         });

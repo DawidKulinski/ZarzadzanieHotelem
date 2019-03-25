@@ -31,6 +31,7 @@ namespace ZarzadzanieHotelem.Views
             _reservationController = new ReservationCotroller();
 
             RezerwacjeAddModButton.Content = "Dodaj";
+            IdStack.Visibility = Visibility.Collapsed;
         }
 
         public RezerwacjeAddView(Reservation reservation)
@@ -44,6 +45,7 @@ namespace ZarzadzanieHotelem.Views
             RezerwacjeStartDate.SelectedDate = reservation.StartTime;
             RezerwacjeEndDate.SelectedDate = reservation.StopTime;
             RezerwacjeAddModButton.Content = "Modyfikuj";
+            IdStack.Visibility = Visibility.Visible;
         }
 
         private void RezerwacjeAddButton(object sender, RoutedEventArgs e)

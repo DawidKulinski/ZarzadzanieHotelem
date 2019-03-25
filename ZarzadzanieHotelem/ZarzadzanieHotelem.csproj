@@ -80,6 +80,7 @@
     <Compile Include="Controller\CleaningController.cs" />
     <Compile Include="Controller\ReservationCotroller.cs" />
     <Compile Include="Controller\RoomController.cs" />
+    <Compile Include="Controller\WorkerController.cs" />
     <Compile Include="Models\Cleaning.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\Equipment.cs" />

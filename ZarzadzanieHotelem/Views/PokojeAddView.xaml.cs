@@ -27,6 +27,7 @@ namespace ZarzadzanieHotelem.Views
             InitializeComponent();
 
             PokojeAddModButton.Content = "Dodaj";
+            IdStack.Visibility = Visibility.Collapsed;
         }
 
         public PokojeAddView(Room room)
@@ -38,6 +39,7 @@ namespace ZarzadzanieHotelem.Views
             RoomAddRoomStandard.Text = room.RoomStandard.ToString();
 
             PokojeAddModButton.Content = "Modyfikuj";
+            IdStack.Visibility = Visibility.Visible;
         }
 
         private void PokojeAddButtonClick(object sender, RoutedEventArgs e)
@@ -50,8 +52,7 @@ namespace ZarzadzanieHotelem.Views
                     {
                         RoomController.Add(new Room
                         {
-                            Id = int.TryParse(RoomAddIDP.Text, out int temp) ? temp : 1,
-                            RoomNumber = int.TryParse(RoomAddRoomNumber.Text, out temp) ? temp : 1,
+                            RoomNumber = int.TryParse(RoomAddRoomNumber.Text, out int temp) ? temp : 1,
                             RoomStandard = int.TryParse(RoomAddRoomStandard.Text, out temp) ? temp : 1
                         });
                     }

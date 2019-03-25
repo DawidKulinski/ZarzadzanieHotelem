@@ -12,7 +12,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ZarzadzanieHotelem.Controller;
 using ZarzadzanieHotelem.Models;
+using ZarzadzanieHotelem.Utils;
 
 namespace ZarzadzanieHotelem.Views
 {
@@ -24,6 +26,13 @@ namespace ZarzadzanieHotelem.Views
         public PracownicyView()
         {
             InitializeComponent();
+
+            using (var context = new SqliteContext())
+            {
+                context.Workers.ToList()
+                    .ForEach(x => PracownicyDG.Items.Add(x));
+            }
+
         }
         private void PracownicyDGMenuAdd(object sender, RoutedEventArgs e)
         {
@@ -32,11 +41,21 @@ namespace ZarzadzanieHotelem.Views
 
         private void PracownicyDGMenuMod(object sender, RoutedEventArgs e)
         {
-            Application.Current.MainWindow.DataContext = new PracownicyAddView(PracownicyDG.SelectedItem as Worker);
+            if (PracownicyDG.SelectedItem != null)
+                Application.Current.MainWindow.DataContext = new PracownicyAddView(PracownicyDG.SelectedItem as Worker);
+            else
+                MessageBox.Show("Nie wybrano elementu", "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
         }
 
         private void PracownicyDGMenuDel(object sender, RoutedEventArgs e)
         {
+            if (PracownicyDG.SelectedItem != null)
+            {
+                WorkerController.Delete(PracownicyDG.SelectedItem as Worker);
+                Application.Current.MainWindow.DataContext = new PracownicyView();
+            }
+            else
+                MessageBox.Show("Nie wybrano elementu", "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
 
         }
     }
