@@ -17,6 +17,7 @@
                 <DataGridTextColumn Header="Id" Binding="{Binding Path=Id}"/>
                 <DataGridTextColumn Header="IdPokoju" Binding="{Binding Path=IdRoom}"/>
                 <DataGridTextColumn Header="IdPracownika" Binding="{Binding Path=IdWorker}"/>
+                <DataGridTextColumn Header="Data" Binding="{Binding Path=CleanTime}"/>
             </DataGrid.Columns>
             <DataGrid.ContextMenu>
                 <ContextMenu>
@@ -28,7 +29,7 @@
         </DataGrid>
         <Grid Grid.Column="1">
             <Viewbox>
-                <wpfTool:TimelinePanel x:Name="SprzatanieTimeline" />
+                
             </Viewbox>
         </Grid>
     </Grid>
