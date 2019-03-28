@@ -16,6 +16,8 @@
             <TextBox Height="23" TextWrapping="Wrap" Text="" x:Name="RoomAddRoomNumber"/>
             <TextBlock><Run Text="Standard Pokoju"/></TextBlock>
             <TextBox Height="23" TextWrapping="Wrap" Text="" x:Name="RoomAddRoomStandard"/>
+            <TextBlock><Run Text="Cena bazowa Pokoju"/></TextBlock>
+            <TextBox Height="23" TextWrapping="Wrap" Text="" x:Name="RoomAddPrice"/>
             <Button x:Name="PokojeAddModButton" Content="Dodaj" Click="PokojeAddButtonClick"/>
         </StackPanel>
     </Grid>

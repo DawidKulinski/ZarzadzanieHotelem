@@ -37,6 +37,7 @@ namespace ZarzadzanieHotelem.Views
             RoomAddIDP.Text = room.Id.ToString();
             RoomAddRoomNumber.Text = room.RoomNumber.ToString();
             RoomAddRoomStandard.Text = room.RoomStandard.ToString();
+            RoomAddPrice.Text = room.Price.ToString();
 
             PokojeAddModButton.Content = "Modyfikuj";
             IdStack.Visibility = Visibility.Visible;
@@ -53,7 +54,8 @@ namespace ZarzadzanieHotelem.Views
                         RoomController.Add(new Room
                         {
                             RoomNumber = int.TryParse(RoomAddRoomNumber.Text, out int temp) ? temp : 1,
-                            RoomStandard = int.TryParse(RoomAddRoomStandard.Text, out temp) ? temp : 1
+                            RoomStandard = int.TryParse(RoomAddRoomStandard.Text, out temp) ? temp : 1,
+                            Price = int.TryParse(RoomAddPrice.Text, out temp) ? temp : 1
                         });
                     }
                     catch(Exception er)
@@ -69,7 +71,8 @@ namespace ZarzadzanieHotelem.Views
                         {
                             Id = int.TryParse(RoomAddIDP.Text, out int temp) ? temp : throw new Exception(),
                             RoomNumber = int.TryParse(RoomAddRoomNumber.Text, out temp) ? temp : throw new Exception(),
-                            RoomStandard = int.TryParse(RoomAddRoomStandard.Text, out temp) ? temp : throw new Exception()
+                            RoomStandard = int.TryParse(RoomAddRoomStandard.Text, out temp) ? temp : throw new Exception(),
+                            Price = int.TryParse(RoomAddPrice.Text, out temp) ? temp : throw new Exception()
                         });
                     }
                     catch (Exception er)

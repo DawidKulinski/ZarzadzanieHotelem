@@ -16,6 +16,7 @@
                 <DataGridTextColumn Header="IDpokoju" Binding="{Binding Path=Id}"/>
                 <DataGridTextColumn Header="Numer Pokoju" Binding="{Binding Path=RoomNumber}"/>
                 <DataGridTextColumn Header="Standard" Binding="{Binding Path=RoomStandard}"/>
+                <DataGridTextColumn Header="Cena" Binding="{Binding Path=Price}"/>
             </DataGrid.Columns>
             <DataGrid.ContextMenu>
                 <ContextMenu>

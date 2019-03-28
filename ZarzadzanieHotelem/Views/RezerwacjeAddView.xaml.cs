@@ -32,6 +32,7 @@ namespace ZarzadzanieHotelem.Views
 
             RezerwacjeAddModButton.Content = "Dodaj";
             IdStack.Visibility = Visibility.Collapsed;
+            PriceStack.Visibility = Visibility.Collapsed;
         }
 
         public RezerwacjeAddView(Reservation reservation)
@@ -44,8 +45,11 @@ namespace ZarzadzanieHotelem.Views
             RezAddIDP.Text = reservation.IdRoom.ToString();
             RezerwacjeStartDate.SelectedDate = reservation.StartTime;
             RezerwacjeEndDate.SelectedDate = reservation.StopTime;
+            RezEditPrice.Text = reservation.Price.ToString();
+
             RezerwacjeAddModButton.Content = "Modyfikuj";
             IdStack.Visibility = Visibility.Visible;
+            PriceStack.Visibility = Visibility.Visible;
         }
 
         private void RezerwacjeAddButton(object sender, RoutedEventArgs e)
@@ -88,7 +92,8 @@ namespace ZarzadzanieHotelem.Views
                             IdCustomer = int.TryParse(RezAddIDC.Text, out temp) ? temp : 1,
                             IdRoom = int.TryParse(RezAddIDP.Text, out temp) ? temp : 1,
                             StartTime = RezerwacjeStartDate.SelectedDate.Value,
-                            StopTime = RezerwacjeEndDate.SelectedDate.Value
+                            StopTime = RezerwacjeEndDate.SelectedDate.Value,
+                            Price = int.TryParse(RezEditPrice.Text, out temp) ? temp : 1,
                         });
                     }
                     catch (Exception er)
@@ -110,15 +115,6 @@ namespace ZarzadzanieHotelem.Views
                 || !RezerwacjeEndDate.SelectedDate.HasValue)
                 return false;
             return true;
-        }
-
-        private void ClearWindow()
-        {
-            RezAddIDR.Text = null;
-            RezAddIDC.Text = null;
-            RezAddIDP.Text = null;
-            RezerwacjeStartDate.SelectedDate = null;
-            RezerwacjeEndDate.SelectedDate = null;
         }
     }
 }

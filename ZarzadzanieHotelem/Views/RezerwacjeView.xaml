@@ -13,6 +13,7 @@
                 <DataGridTextColumn Header="Klient" Binding="{Binding Path=IdCustomer}"/>
                 <DataGridTextColumn Header="Data od" Binding="{Binding Path=StartTime}"/>
                 <DataGridTextColumn Header="Data do" Binding="{Binding Path=StopTime}"/>
+                <DataGridTextColumn Header="Cena" Binding="{Binding Path=Price}"/>
             </DataGrid.Columns>
             <DataGrid.ContextMenu>
                 <ContextMenu>

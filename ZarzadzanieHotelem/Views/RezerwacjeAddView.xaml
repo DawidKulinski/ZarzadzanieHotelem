@@ -20,6 +20,10 @@
             <DatePicker x:Name="RezerwacjeStartDate"/>
             <TextBlock><Run Text="Koniec"/></TextBlock>
             <DatePicker x:Name="RezerwacjeEndDate"/>
+            <StackPanel x:Name="PriceStack">
+                <TextBlock><Run Text="Koniec"/></TextBlock>
+                <TextBox Height="23" TextWrapping="Wrap" Text="" x:Name="RezEditPrice"/>
+            </StackPanel>
             <Button x:Name="RezerwacjeAddModButton" Content="Dodaj" Click="RezerwacjeAddButton"/>
         </StackPanel>
     </Grid>
