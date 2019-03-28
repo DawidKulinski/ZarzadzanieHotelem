@@ -18,6 +18,7 @@ namespace ZarzadzanieHotelem.Models
         public int Id { get; set; }
         public int RoomNumber { get; set; }
         public int RoomStandard { get; set; }
+        public decimal Price { get; set; }
         public virtual ICollection<Reservation> Reservation { get; set; }
         public virtual ICollection<Cleaning> Cleaning { get; set; }
         public virtual ICollection<EquipmentPerRoom> EquipmentPerRoom { get; set; }
