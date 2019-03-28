@@ -16,6 +16,12 @@ namespace ZarzadzanieHotelem.Controller
         {
             using (var conn = new SqliteContext(@"testDb"))
             {
+                conn.Customers.Add(new Customer()
+                {
+                    Id = 1,
+                    Name = "Test",
+                    LastName = "Testowy"
+                });
                 Customer cus = conn.Customers.FirstOrDefault(p => p.Id == rez.IdCustomer);
                 Room room = conn.Rooms.FirstOrDefault(p => p.Id == rez.IdRoom);
                 rez.Customer = cus ?? throw new Exception("Nie ma klienta o ID: " + rez.IdCustomer);

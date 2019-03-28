@@ -14,7 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using ZarzadzanieHotelem.Controller;
 using ZarzadzanieHotelem.Models;
-using ZarzadzanieHotelem;
+using ZarzadzanieHotelem.Utils;
 
 namespace ZarzadzanieHotelem.Views
 {
@@ -93,7 +93,7 @@ namespace ZarzadzanieHotelem.Views
                             IdRoom = int.TryParse(RezAddIDP.Text, out temp) ? temp : 1,
                             StartTime = RezerwacjeStartDate.SelectedDate.Value,
                             StopTime = RezerwacjeEndDate.SelectedDate.Value,
-                            Price = int.TryParse(RezEditPrice.Text, out temp) ? temp : 1,
+                            Price = decimal.TryParse(RezEditPrice.Text, out decimal temp1) ? temp1 : 1,
                         });
                     }
                     catch (Exception er)
@@ -105,6 +105,54 @@ namespace ZarzadzanieHotelem.Views
             }
             else
                 MessageBox.Show("Nie uzupełniono wszystkich pól.", "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
+        }
+
+        private void dpick_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            DateTime? startTime = RezerwacjeStartDate.SelectedDate;
+            DateTime? stopTime = RezerwacjeEndDate.SelectedDate;
+
+            if(startTime != null && stopTime != null)
+            {
+                using (var context = new SqliteContext())
+                {
+                    try
+                    {
+                        int roomId = int.Parse(RezAddIDP.Text);
+                        decimal roomPrice = context.Rooms.First(x => x.Id == roomId).Price;
+
+                        int roomCount = context.Rooms.Count();
+                        int reservedRooms = context.Reservations.Where(x =>
+                            (x.StartTime < startTime && x.StopTime > stopTime) || (x.StartTime < stopTime && x.StopTime > stopTime))
+                                .Select(x => x.IdRoom)
+                                .Distinct()
+                                .Count();
+
+                        decimal roomUsage = (decimal)reservedRooms / (roomCount == 0 ? 1 : roomCount); //preventing to divide by 0.
+
+                        if (roomUsage < 0.5m)
+                        {
+                            RezEditPrice.Text = (roomPrice * 0.8m).ToString();
+                        }
+                        else if (roomUsage < 0.9m && roomUsage >= 0.5m)
+                        {
+                            RezEditPrice.Text = roomPrice.ToString();
+                        }
+                        else
+                        {
+                            RezEditPrice.Text = (roomPrice * 1.2m).ToString();
+                        }
+                    }
+                    catch(InvalidOperationException)
+                    {
+                        MessageBox.Show($"Nie ma pokoju o ID {RezAddIDP.Text}");
+                    }
+                    catch(FormatException)
+                    {
+                        MessageBox.Show($"Nie podano identyfikatora pokoju.");
+                    }
+                }
+            }
         }
 
         private bool IsReservationValid()

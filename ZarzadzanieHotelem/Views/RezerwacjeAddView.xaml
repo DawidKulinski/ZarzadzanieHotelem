@@ -17,9 +17,9 @@
             <TextBlock><Run Text="IDPokoju"/></TextBlock>
             <TextBox Height="23" TextWrapping="Wrap" Text="" x:Name="RezAddIDP"/>
             <TextBlock><Run Text="Start"/></TextBlock>
-            <DatePicker x:Name="RezerwacjeStartDate"/>
+            <DatePicker x:Name="RezerwacjeStartDate" SelectedDateChanged="dpick_SelectedDateChanged"/>
             <TextBlock><Run Text="Koniec"/></TextBlock>
-            <DatePicker x:Name="RezerwacjeEndDate"/>
+            <DatePicker x:Name="RezerwacjeEndDate" SelectedDateChanged="dpick_SelectedDateChanged"/>
             <StackPanel x:Name="PriceStack">
                 <TextBlock><Run Text="Koniec"/></TextBlock>
                 <TextBox Height="23" TextWrapping="Wrap" Text="" x:Name="RezEditPrice"/>

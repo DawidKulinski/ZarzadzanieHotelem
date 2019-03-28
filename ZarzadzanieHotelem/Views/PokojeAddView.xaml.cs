@@ -88,7 +88,7 @@ namespace ZarzadzanieHotelem.Views
 
         private bool IsValid()
         {
-            if (!String.IsNullOrWhiteSpace(RoomAddIDP.Text)
+            if (!String.IsNullOrWhiteSpace(RoomAddPrice.Text)
                 & !String.IsNullOrWhiteSpace(RoomAddRoomNumber.Text)
                 & !String.IsNullOrWhiteSpace(RoomAddRoomStandard.Text))
                 return true;
