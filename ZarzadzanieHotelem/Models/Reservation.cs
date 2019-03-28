@@ -20,6 +20,7 @@ namespace ZarzadzanieHotelem.Models
         public int IdRoom { get; set; }
         public DateTime StartTime { get; set; }
         public DateTime StopTime { get; set; }
+        public decimal Price { get; set; }
 
         [ForeignKey("IdCustomer")]
         public virtual Customer Customer { get; set; }
