@@ -72,7 +72,8 @@ namespace ZarzadzanieHotelem.Views
                                 IdCustomer = int.TryParse(RezAddIDC.Text, out temp) ? temp : 1,
                                 IdRoom = int.TryParse(RezAddIDP.Text, out temp) ? temp : 1,
                                 StartTime = RezerwacjeStartDate.SelectedDate.Value,
-                                StopTime = RezerwacjeEndDate.SelectedDate.Value
+                                StopTime = RezerwacjeEndDate.SelectedDate.Value,
+                                Price = decimal.TryParse(RezEditPrice.Text, out decimal temp1) ? temp1 : 0.0m
                             });
                         }
                     }
