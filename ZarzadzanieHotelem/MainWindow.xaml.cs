@@ -68,5 +68,9 @@ namespace ZarzadzanieHotelem
         {
             DataContext = new PracownicyAddView();
         }
+        private void KlienciMenuAddClick(object sender, MouseButtonEventArgs e)
+        {
+            DataContext = new KlientAddView();
+        }
     }
 }

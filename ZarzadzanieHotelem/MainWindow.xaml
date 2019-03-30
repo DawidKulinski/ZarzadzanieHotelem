@@ -60,6 +60,12 @@
                     <TextBlock  MouseLeftButtonDown="PracownicyMenuAddClick">Dodaj</TextBlock>
                     <Separator Height="5" Width="Auto" />
                 </StackPanel>
+                <TextBlock>Klienci</TextBlock>
+                <Separator Height="5" Width="Auto" />
+                <StackPanel x:Name="KlienciMenu" Width="100">
+                    <TextBlock  MouseLeftButtonDown="KlienciMenuAddClick">Dodaj</TextBlock>
+                    <Separator Height="5" Width="Auto" />
+                </StackPanel>
             </StackPanel>
             
             
