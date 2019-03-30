@@ -14,37 +14,51 @@ namespace ZarzadzanieHotelem.Controller
 
         public void Add(Reservation rez)
         {
-            using (var conn = new SqliteContext(@"testDb"))
+            using (var conn = new SqliteContext())
             {
-                conn.Customers.Add(new Customer()
-                {
-                    Id = 1,
-                    Name = "Test",
-                    LastName = "Testowy"
-                });
+                //conn.Customers.Add(new Customer()
+                //{
+                //    Id = 1,
+                //    Name = "Test",
+                //    LastName = "Testowy"
+                //});
+                //conn.SaveChanges();
+
                 Customer cus = conn.Customers.FirstOrDefault(p => p.Id == rez.IdCustomer);
                 Room room = conn.Rooms.FirstOrDefault(p => p.Id == rez.IdRoom);
                 rez.Customer = cus ?? throw new Exception("Nie ma klienta o ID: " + rez.IdCustomer);
                 rez.Room = room ?? throw new Exception("Nie ma pokoju o ID: " + rez.IdRoom);
 
-                if (conn.Reservations.Any(p => p.IdRoom == rez.IdRoom && (p.StartTime == rez.StartTime || p.StartTime == rez.StopTime
-                || p.StopTime == rez.StopTime || p.StopTime == rez.StartTime
-                || (p.StartTime > rez.StartTime && p.StartTime < rez.StopTime)
-                || (p.StartTime < rez.StartTime && p.StopTime > rez.StartTime)
-                || (p.StartTime > rez.StartTime && p.StopTime < rez.StopTime)
-                || (p.StartTime < rez.StartTime && p.StopTime > rez.StopTime))))
+                IList<Reservation> reservations = conn.Reservations.Where(p => p.IdRoom == rez.IdRoom).ToList();
+
+                if (reservations.Any(p => p.StartTime.Date == rez.StartTime.Date || p.StopTime.Date == rez.StopTime.Date
+                || (p.StartTime.Date > rez.StartTime.Date && p.StartTime.Date < rez.StopTime.Date)
+                || (p.StartTime.Date < rez.StartTime.Date && p.StopTime.Date > rez.StartTime.Date)
+                || (p.StartTime.Date > rez.StartTime.Date && p.StopTime.Date < rez.StopTime.Date)
+                || (p.StartTime.Date < rez.StartTime.Date && p.StopTime.Date > rez.StopTime.Date)))
                     throw new Exception("W tym terminie pokój jest już zarezerwowany");
+
+                rez.StartTime = rez.StartTime.AddHours(15);
+                rez.StopTime = rez.StopTime.AddHours(10);
+
+                //if (conn.Reservations.Any(p => p.IdRoom == rez.IdRoom && (p.StartTime == rez.StartTime || p.StartTime == rez.StopTime
+                //|| p.StopTime == rez.StopTime || p.StopTime == rez.StartTime
+                //|| (p.StartTime > rez.StartTime && p.StartTime < rez.StopTime)
+                //|| (p.StartTime < rez.StartTime && p.StopTime > rez.StartTime)
+                //|| (p.StartTime > rez.StartTime && p.StopTime < rez.StopTime)
+                //|| (p.StartTime < rez.StartTime && p.StopTime > rez.StopTime))))
+                //    throw new Exception("W tym terminie pokój jest już zarezerwowany");
 
 
                 conn.Reservations.Add(rez);
-                AddCleaning(rez);
+                AddCleaning(rez, conn);
                 conn.SaveChanges();
             }
         }
 
         public void Delete(Reservation rez)
         {
-            using (var conn = new SqliteContext(@"testDb"))
+            using (var conn = new SqliteContext())
             {
                 Reservation toDelete = conn.Reservations.FirstOrDefault(p => p.Id == rez.Id);
                 if (toDelete != null)
@@ -61,7 +75,7 @@ namespace ZarzadzanieHotelem.Controller
 
         public void Edit(Reservation rez)
         {
-            using (var conn = new SqliteContext(@"testDb"))
+            using (var conn = new SqliteContext())
             {
                 if (rez.StartTime > rez.StopTime)
                 {
@@ -80,13 +94,25 @@ namespace ZarzadzanieHotelem.Controller
                     rezToChange.StartTime = rez.StartTime;
                     rezToChange.StopTime = rez.StopTime;
 
-                    if (conn.Reservations.Any(p => p.Id != rez.Id && p.IdRoom == rez.IdRoom && (p.StartTime == rez.StartTime || p.StartTime == rez.StopTime
-                         || p.StopTime == rez.StopTime || p.StopTime == rez.StartTime
-                         || (p.StartTime > rez.StartTime && p.StartTime < rez.StopTime)
-                         || (p.StartTime < rez.StartTime && p.StopTime > rez.StartTime)
-                         || (p.StartTime > rez.StartTime && p.StopTime < rez.StopTime)
-                         || (p.StartTime < rez.StartTime && p.StopTime > rez.StopTime))))
+                    IList<Reservation> reservations = conn.Reservations.Where(p => p.Id != rez.Id && p.IdRoom == rez.IdRoom).ToList();
+
+                    if (reservations.Any(p => p.StartTime.Date == rez.StartTime.Date || p.StopTime.Date == rez.StopTime.Date
+                         || (p.StartTime.Date > rez.StartTime.Date && p.StartTime.Date < rez.StopTime.Date)
+                         || (p.StartTime.Date < rez.StartTime.Date && p.StopTime.Date > rez.StartTime.Date)
+                         || (p.StartTime.Date > rez.StartTime.Date && p.StopTime.Date < rez.StopTime.Date)
+                         || (p.StartTime.Date < rez.StartTime.Date && p.StopTime.Date > rez.StopTime.Date)))
                         throw new Exception("W tym terminie pokój jest już zarezerwowany, nie można zmienić terminu rezerwacji");
+
+                    //if (conn.Reservations.Any(p => p.Id != rez.Id && p.IdRoom == rez.IdRoom && (p.StartTime == rez.StartTime || p.StartTime == rez.StopTime
+                    //     || p.StopTime == rez.StopTime || p.StopTime == rez.StartTime
+                    //     || (p.StartTime > rez.StartTime && p.StartTime < rez.StopTime)
+                    //     || (p.StartTime < rez.StartTime && p.StopTime > rez.StartTime)
+                    //     || (p.StartTime > rez.StartTime && p.StopTime < rez.StopTime)
+                    //     || (p.StartTime < rez.StartTime && p.StopTime > rez.StopTime))))
+                    //    throw new Exception("W tym terminie pokój jest już zarezerwowany, nie można zmienić terminu rezerwacji");
+
+                    rezToChange.StartTime = rezToChange.StartTime.AddHours(15);
+                    rezToChange.StopTime = rezToChange.StopTime.AddHours(10);
 
                     Customer cus = conn.Customers.FirstOrDefault(p => p.Id == rez.IdCustomer);
                     Room room = conn.Rooms.FirstOrDefault(p => p.Id == rez.IdRoom);
@@ -105,15 +131,21 @@ namespace ZarzadzanieHotelem.Controller
 
         public IEnumerable<Reservation> GetAll()
         {
-            using (var conn = new SqliteContext(@"testDb"))
+            using (var conn = new SqliteContext())
             {
                 return conn.Reservations.ToList();
             }
         }
 
-        private void AddCleaning(Reservation rez)
+        private void AddCleaning(Reservation rez, SqliteContext conn)
         {
-            for (DateTime date = rez.StartTime.Date; date < rez.StopTime.Date; date = date.AddDays(1))
+            DateTime dateStart = rez.StartTime.Date;
+
+            var clinings = conn.Cleanings.Where(p => p.IdRoom == rez.IdRoom).ToList();
+            if (clinings.Any(p => p.CleanTime.Date == dateStart))
+                dateStart = dateStart.AddDays(1);
+
+            for (DateTime date = dateStart; date < rez.StopTime.Date; date = date.AddDays(1))
             {
                 Cleaning clining = new Cleaning
                 {
@@ -122,6 +154,12 @@ namespace ZarzadzanieHotelem.Controller
                     IdWorker = -1
                 };
                 CleaningController.Add(clining);
+            }
+
+            if (clinings.Any(p => p.CleanTime.Date == rez.StopTime.Date))
+            {
+                Cleaning cliningToDelete = clinings.First(p => p.CleanTime.Date == rez.StopTime.Date);
+                CleaningController.Delete(cliningToDelete);
             }
 
             Cleaning lastClining = new Cleaning
@@ -136,23 +174,46 @@ namespace ZarzadzanieHotelem.Controller
         private void DeleteClining(Reservation rez, SqliteContext conn)
         {
             var cleanings = conn.Cleanings.Where(r => r.IdRoom == rez.IdRoom).ToList();
+            DateTime dateStart = rez.StartTime.Date;
+            bool deleteOnlyOne = false;
 
-            for (DateTime date = rez.StartTime.Date; date <= rez.StopTime.Date; date = date.AddDays(1))
+            var reservations = conn.Reservations.Where(p => p.IdRoom == rez.IdRoom).ToList();
+            if (reservations.Any(p => p.StopTime.Date == rez.StartTime.Date))
+                dateStart = dateStart.AddDays(1);
+
+            if (reservations.Any(p => p.StartTime.Date == rez.StopTime.Date))
+                deleteOnlyOne = true;
+
+            for (DateTime date = dateStart; date <= rez.StopTime.Date; date = date.AddDays(1))
             {
                 var cleaningsForDay = cleanings.Where(t => t.CleanTime.Date == date.Date);
-                foreach (var cleaning in cleaningsForDay)
-                    conn.Cleanings.Remove(cleaning);
+                if (deleteOnlyOne && date == rez.StopTime.Date && cleaningsForDay.Count() == 2)
+                {
+                    conn.Cleanings.Remove(cleaningsForDay.First());
+                }
+                else
+                {
+                    foreach (var cleaning in cleaningsForDay)
+                        conn.Cleanings.Remove(cleaning);
+                }
             }
+
             conn.SaveChanges();
         }
 
         private void EditClining(Reservation rezBeforeChange, Reservation rezAfterChange, SqliteContext conn)
         {
             var cleanings = conn.Cleanings.Where(r => r.IdRoom == rezAfterChange.IdRoom).ToList();
+            var reservations = conn.Reservations.Where(p => p.IdRoom == rezAfterChange.IdRoom).ToList();
 
             if (rezBeforeChange.StartTime.Date < rezAfterChange.StartTime.Date)
             {
-                for (DateTime date = rezBeforeChange.StartTime.Date; date < rezAfterChange.StartTime.Date; date = date.AddDays(1))
+                DateTime dateStart = rezBeforeChange.StartTime.Date;
+
+                if (reservations.Any(p => p.StopTime.Date == rezBeforeChange.StartTime.Date))
+                    dateStart = dateStart.AddDays(1);
+
+                for (DateTime date = dateStart; date < rezAfterChange.StartTime.Date; date = date.AddDays(1))
                 {
                     var cleaningsForDay = cleanings.Where(t => t.CleanTime.Date == date.Date);
                     foreach (var cleaning in cleaningsForDay)
@@ -162,7 +223,11 @@ namespace ZarzadzanieHotelem.Controller
             }
             if (rezBeforeChange.StartTime.Date > rezAfterChange.StartTime.Date)
             {
-                for (DateTime date = rezAfterChange.StartTime.Date; date < rezBeforeChange.StartTime.Date; date = date.AddDays(1))
+                DateTime dateStart = rezAfterChange.StartTime.Date;
+                if (reservations.Any(p => p.StopTime.Date == rezAfterChange.StartTime.Date))
+                    dateStart = dateStart.AddDays(1);
+
+                for (DateTime date = dateStart; date < rezBeforeChange.StartTime.Date; date = date.AddDays(1))
                 {
                     Cleaning clining = new Cleaning
                     {
@@ -175,11 +240,25 @@ namespace ZarzadzanieHotelem.Controller
             }
             if (rezAfterChange.StopTime.Date < rezBeforeChange.StopTime.Date)
             {
+                bool isReservation = false;
+                if (reservations.Any(p => p.StartTime.Date == rezBeforeChange.StopTime.Date))
+                {
+                    isReservation = true;
+                }
+
                 for (DateTime date = rezAfterChange.StopTime.Date; date <= rezBeforeChange.StopTime.Date; date = date.AddDays(1))
                 {
                     var cleaningsForDay = cleanings.Where(t => t.CleanTime.Date == date.Date);
-                    foreach (var cleaning in cleaningsForDay)
-                        conn.Cleanings.Remove(cleaning);
+
+                    if (isReservation && date == rezBeforeChange.StopTime.Date && cleaningsForDay.Count() == 2)
+                    {
+                        conn.Cleanings.Remove(cleaningsForDay.First());
+                    }
+                    else
+                    {
+                        foreach (var cleaning in cleaningsForDay)
+                            conn.Cleanings.Remove(cleaning);
+                    }
                 }
                 conn.SaveChanges();
 
@@ -197,6 +276,13 @@ namespace ZarzadzanieHotelem.Controller
                 if (cleaningsForDay != null)
                 {
                     conn.Cleanings.Remove(cleaningsForDay);
+                    conn.SaveChanges();
+                }
+
+                if (cleanings.Any(p => p.CleanTime.Date == rezAfterChange.StopTime.Date))
+                {
+                    Cleaning clean = cleanings.First(p => p.CleanTime.Date == rezAfterChange.StopTime.Date);
+                    conn.Cleanings.Remove(clean);
                     conn.SaveChanges();
                 }
 

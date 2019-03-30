@@ -80,6 +80,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Controller\CleaningController.cs" />
+    <Compile Include="Controller\CustomerController.cs" />
     <Compile Include="Controller\ReservationCotroller.cs" />
     <Compile Include="Controller\RoomController.cs" />
     <Compile Include="Controller\WorkerController.cs" />
@@ -96,6 +97,9 @@
     <Compile Include="Utils\SqliteContext.cs" />
     <Compile Include="Views\KlientAddView.xaml.cs">
       <DependentUpon>KlientAddView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\KlientView.xaml.cs">
+      <DependentUpon>KlientView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\PokojeAddView.xaml.cs">
       <DependentUpon>PokojeAddView.xaml</DependentUpon>
@@ -134,6 +138,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Views\KlientAddView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\KlientView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
