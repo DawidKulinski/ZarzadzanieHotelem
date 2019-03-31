@@ -11,7 +11,7 @@
             <ColumnDefinition Width="300"/>
             <ColumnDefinition Width="auto"/>
         </Grid.ColumnDefinitions>
-        <DataGrid x:Name="PracownicyDG" HorizontalAlignment="Left" Height="auto" Margin="0,0,0,0" Width="300" PreviewMouseDoubleClick="PracownicyDG_PreviewMouseDoubleClick" IsReadOnly="True">
+        <DataGrid x:Name="PracownicyDG" HorizontalAlignment="Left" Height="auto" Margin="0,0,0,0" Width="300" PreviewMouseDoubleClick="PracownicyDG_PreviewMouseDoubleClick" IsReadOnly="True" SelectionChanged="SpratanieDG_SelectionChanged">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Id" Binding="{Binding Path=Id}"/>
                 <DataGridTextColumn Header="Imie" Binding="{Binding Path=Name}"/>
@@ -27,7 +27,7 @@
             </DataGrid.ContextMenu>
         </DataGrid>
         <Grid Grid.Column="1">
-            <DataGrid x:Name="SprzatanieDG"/>
+            <DataGrid x:Name="SprzatanieDG" IsReadOnly="True"/>
         </Grid>
     </Grid>
 </UserControl>
