@@ -27,6 +27,16 @@ namespace ZarzadzanieHotelem.Views
         {
             InitializeComponent();
 
+            var IdPokoju = new DataGridTextColumn();
+            IdPokoju.Header = "Numer Pokoju";
+            IdPokoju.Binding = new Binding("RoomNumber");
+            SpratanieDG.Columns.Add(IdPokoju);
+
+            var cleaning = new DataGridTextColumn();
+            cleaning.Header = "Czas";
+            cleaning.Binding = new Binding("CleanTime");
+            SpratanieDG.Columns.Add(cleaning);
+
             using (var context = new SqliteContext())
             {
                 context.Workers.ToList()
@@ -57,6 +67,17 @@ namespace ZarzadzanieHotelem.Views
             else
                 MessageBox.Show("Nie wybrano elementu", "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
 
+        }
+
+        private void SpratanieDG_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            SpratanieDG.Items.Clear();
+            using (var context = new SqliteContext())
+            {
+                Worker worker = e.AddedItems[0] as Worker;
+                foreach (var x in context.Cleanings.Where(x => x.IdWorker == worker.Id))
+                    SpratanieDG.Items.Add(new { x.Room.RoomNumber, x.CleanTime});
+            }
         }
     }
 }

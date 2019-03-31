@@ -2,7 +2,8 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:controls="clr-namespace:ZarzadzanieHotelem.Controller"
              xmlns:local="clr-namespace:ZarzadzanieHotelem.Views"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="700">
@@ -11,7 +12,7 @@
             <ColumnDefinition Width="300"/>
             <ColumnDefinition Width="auto"/>
         </Grid.ColumnDefinitions>
-        <DataGrid x:Name="PracownicyDG" HorizontalAlignment="Left" Height="auto" Margin="0,0,0,0" Width="300">
+        <DataGrid x:Name="PracownicyDG" HorizontalAlignment="Left" Height="auto" Margin="0,0,0,0" Width="300" SelectionChanged="SpratanieDG_SelectionChanged">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Id" Binding="{Binding Path=Id}"/>
                 <DataGridTextColumn Header="Imie" Binding="{Binding Path=Name}"/>
@@ -26,10 +27,10 @@
                 </ContextMenu>
             </DataGrid.ContextMenu>
         </DataGrid>
-            <Grid Grid.Column="1">
-                <Viewbox>
+        <Grid Grid.Column="1">
+            <DataGrid x:Name="SpratanieDG" Width="400" Height="auto" >
 
-                </Viewbox>
-            </Grid>
+                </DataGrid>
+        </Grid>
     </Grid>
 </UserControl>
