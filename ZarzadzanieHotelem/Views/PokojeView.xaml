@@ -9,9 +9,10 @@
     <Grid x:Name="Pokoje" HorizontalAlignment="Stretch">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="300"/>
+            <ColumnDefinition Width="200"/>
             <ColumnDefinition Width="auto"/>
         </Grid.ColumnDefinitions>
-        <DataGrid x:Name="PokojeDG" HorizontalAlignment="Left" Height="auto" Margin="0,0,0,0" Width="300" PreviewMouseDoubleClick="PokojeDG_PreviewMouseDoubleClick" IsReadOnly="True">
+        <DataGrid x:Name="PokojeDG" HorizontalAlignment="Left" Height="auto" Margin="0,0,0,0" Width="300" PreviewMouseDoubleClick="PokojeDG_PreviewMouseDoubleClick" IsReadOnly="True" SelectionChanged="Row_SelectionChanged">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="IDpokoju" Binding="{Binding Path=Id}"/>
                 <DataGridTextColumn Header="Numer Pokoju" Binding="{Binding Path=RoomNumber}"/>
@@ -27,6 +28,9 @@
             </DataGrid.ContextMenu>
         </DataGrid>
         <Grid Grid.Column="1">
+            <DataGrid x:Name="SprzatanieDG" IsReadOnly="True" Width="300"/>
+        </Grid>
+        <Grid Grid.Column="2">
             <Viewbox>
                 <Calendar x:Name="Kalendarz"/>
             </Viewbox>

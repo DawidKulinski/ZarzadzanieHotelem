@@ -27,6 +27,21 @@ namespace ZarzadzanieHotelem.Views
         {
             InitializeComponent();
 
+            var IdPracownika = new DataGridTextColumn();
+            IdPracownika.Header = "Imię";
+            IdPracownika.Binding = new Binding("Name");
+            SprzatanieDG.Columns.Add(IdPracownika);
+
+            var LNamePracownika = new DataGridTextColumn();
+            LNamePracownika.Header = "Nazwisko";
+            LNamePracownika.Binding = new Binding("LastName");
+            SprzatanieDG.Columns.Add(LNamePracownika);
+
+            var cleaning = new DataGridTextColumn();
+            cleaning.Header = "Czas";
+            cleaning.Binding = new Binding("CleanTime");
+            SprzatanieDG.Columns.Add(cleaning);
+
             using (var context = new SqliteContext())
             {
                 context.Rooms.ToList()
@@ -75,7 +90,13 @@ namespace ZarzadzanieHotelem.Views
                                 .Add(new CalendarDateRange(x.Item1, x.Item2)));
                 }
             }
-
+            SprzatanieDG.Items.Clear();
+            using (var context = new SqliteContext())
+            {
+                Room r = e.AddedItems[0] as Room;
+                foreach (var x in context.Cleanings.Where(x => x.IdRoom == r.Id))
+                    SprzatanieDG.Items.Add(new { x.Worker.Name, x.Worker.LastName, x.CleanTime });
+            }
         }
 
         private void PokojeDG_PreviewMouseDoubleClick(object sender, MouseButtonEventArgs e)
