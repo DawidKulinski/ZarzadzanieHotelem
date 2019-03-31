@@ -26,10 +26,8 @@
                 </ContextMenu>
             </DataGrid.ContextMenu>
         </DataGrid>
-            <Grid Grid.Column="1">
-                <Viewbox>
-
-                </Viewbox>
-            </Grid>
+        <Grid Grid.Column="1">
+            <DataGrid x:Name="SprzatanieDG"/>
+        </Grid>
     </Grid>
 </UserControl>

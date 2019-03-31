@@ -30,12 +30,12 @@ namespace ZarzadzanieHotelem.Views
             var IdPokoju = new DataGridTextColumn();
             IdPokoju.Header = "Numer Pokoju";
             IdPokoju.Binding = new Binding("RoomNumber");
-            SpratanieDG.Columns.Add(IdPokoju);
+            SprzatanieDG.Columns.Add(IdPokoju);
 
             var cleaning = new DataGridTextColumn();
             cleaning.Header = "Czas";
             cleaning.Binding = new Binding("CleanTime");
-            SpratanieDG.Columns.Add(cleaning);
+            SprzatanieDG.Columns.Add(cleaning);
 
             using (var context = new SqliteContext())
             {
@@ -71,13 +71,21 @@ namespace ZarzadzanieHotelem.Views
 
         private void SpratanieDG_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            SpratanieDG.Items.Clear();
+            SprzatanieDG.Items.Clear();
             using (var context = new SqliteContext())
             {
                 Worker worker = e.AddedItems[0] as Worker;
                 foreach (var x in context.Cleanings.Where(x => x.IdWorker == worker.Id))
-                    SpratanieDG.Items.Add(new { x.Room.RoomNumber, x.CleanTime});
+                    SprzatanieDG.Items.Add(new { x.Room.RoomNumber, x.CleanTime});
             }
+        }
+
+        private void PracownicyDG_PreviewMouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (PracownicyDG.SelectedItem != null)
+                Application.Current.MainWindow.DataContext = new PracownicyAddView(PracownicyDG.SelectedItem as Worker);
+            else
+                Application.Current.MainWindow.DataContext = new PracownicyAddView();
         }
     }
 }
