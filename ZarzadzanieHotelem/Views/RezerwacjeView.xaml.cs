@@ -71,5 +71,13 @@ namespace ZarzadzanieHotelem.Views
             else
                 MessageBox.Show("Nie wybrano elementu", "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
         }
+
+        private void RezerwacjeDG_PreviewMouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (RezerwacjeDG.SelectedItem != null)
+                Application.Current.MainWindow.DataContext = new RezerwacjeAddView(RezerwacjeDG.SelectedItem as Reservation);
+            else
+                Application.Current.MainWindow.DataContext = new RezerwacjeAddView();
+        }
     }
 }

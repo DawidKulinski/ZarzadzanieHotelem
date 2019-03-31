@@ -11,7 +11,7 @@
             <ColumnDefinition Width="300"/>
             <ColumnDefinition Width="auto"/>
         </Grid.ColumnDefinitions>
-        <DataGrid x:Name="PokojeDG" HorizontalAlignment="Left" Height="auto" Margin="0,0,0,0" Width="300">
+        <DataGrid x:Name="PokojeDG" HorizontalAlignment="Left" Height="auto" Margin="0,0,0,0" Width="300" PreviewMouseDoubleClick="PokojeDG_PreviewMouseDoubleClick" IsReadOnly="True">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="IDpokoju" Binding="{Binding Path=Id}"/>
                 <DataGridTextColumn Header="Numer Pokoju" Binding="{Binding Path=RoomNumber}"/>

@@ -49,5 +49,13 @@ namespace ZarzadzanieHotelem.Views
             else
                 MessageBox.Show("Nie wybrano elementu", "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
         }
+
+        private void SprzatanieDG_PreviewMouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            if (SprzatanieDG.SelectedItem != null)
+                Application.Current.MainWindow.DataContext = new SprzatanieAddView(SprzatanieDG.SelectedItem as Cleaning);
+            else
+                Application.Current.MainWindow.DataContext = new SprzatanieAddView();
+        }
     }
 }
