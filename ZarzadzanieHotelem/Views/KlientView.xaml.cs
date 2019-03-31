@@ -88,5 +88,17 @@ namespace ZarzadzanieHotelem.Views
                 MessageBox.Show("Nie wybrano elementu", "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
 
         }
+
+        private void KlientDG_PreviewMouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if(KlientDG.SelectedItem != null)
+            {
+                Application.Current.MainWindow.DataContext = new KlientAddView(KlientDG.SelectedItem as Customer);
+            }
+            else
+            {
+                Application.Current.MainWindow.DataContext = new KlientAddView();
+            }
+        }
     }
 }

@@ -77,5 +77,15 @@ namespace ZarzadzanieHotelem.Views
             }
 
         }
+
+        private void PokojeDG_PreviewMouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (PokojeDG.SelectedItem != null)
+            {
+                Application.Current.MainWindow.DataContext = new PokojeAddView(PokojeDG.SelectedItem as Room);
+            }
+            else
+                Application.Current.MainWindow.DataContext = new PokojeAddView();
+        }
     }
 }
