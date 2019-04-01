@@ -81,6 +81,7 @@
     </ApplicationDefinition>
     <Compile Include="Controller\CleaningController.cs" />
     <Compile Include="Controller\CustomerController.cs" />
+    <Compile Include="Controller\EquipmentController.cs" />
     <Compile Include="Controller\ReservationCotroller.cs" />
     <Compile Include="Controller\RoomController.cs" />
     <Compile Include="Controller\WorkerController.cs" />
@@ -94,6 +95,7 @@
     <Compile Include="Models\Room.cs" />
     <Compile Include="Models\TestData.cs" />
     <Compile Include="Models\Worker.cs" />
+    <Compile Include="Utils\ClassUtils.cs" />
     <Compile Include="Utils\SqliteContext.cs" />
     <Compile Include="Views\KlientAddView.xaml.cs">
       <DependentUpon>KlientAddView.xaml</DependentUpon>
