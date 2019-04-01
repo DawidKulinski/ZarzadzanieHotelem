@@ -57,6 +57,21 @@ namespace ZarzadzanieHotelem.Views
         {
             InitializeComponent();
 
+            var NrPokoju = new DataGridTextColumn();
+            NrPokoju.Header = "Numer Pokoju";
+            NrPokoju.Binding = new Binding("RoomNumber");
+            RezerwacjeDG.Columns.Add(NrPokoju);
+
+            var rezerwStart = new DataGridTextColumn();
+            rezerwStart.Header = "Przyjazd";
+            rezerwStart.Binding = new Binding("StartTime");
+            RezerwacjeDG.Columns.Add(rezerwStart);
+
+            var rezerwEnd = new DataGridTextColumn();
+            rezerwEnd.Header = "Czas";
+            rezerwEnd.Binding = new Binding("StopTime");
+            RezerwacjeDG.Columns.Add(rezerwEnd);
+
             using (var context = new SqliteContext())
             {
                 context.Customers.ToList()
@@ -98,6 +113,17 @@ namespace ZarzadzanieHotelem.Views
             else
             {
                 Application.Current.MainWindow.DataContext = new KlientAddView();
+            }
+        }
+
+        private void KlientDG_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            RezerwacjeDG.Items.Clear();
+            using (var context = new SqliteContext())
+            {
+                Customer customer = e.AddedItems[0] as Customer;
+                foreach (var x in context.Reservations.Where(x => x.IdCustomer == customer.Id))
+                    RezerwacjeDG.Items.Add(new { x.Room.RoomNumber, x.StartTime, x.StopTime });
             }
         }
     }

@@ -11,7 +11,7 @@
             <ColumnDefinition Width="300"/>
             <ColumnDefinition Width="auto"/>
         </Grid.ColumnDefinitions>
-        <DataGrid x:Name="KlientDG" HorizontalAlignment="Left" Height="auto" Margin="0,0,0,0" Width="300" PreviewMouseDoubleClick="KlientDG_PreviewMouseDoubleClick" IsReadOnly="True">
+        <DataGrid x:Name="KlientDG" HorizontalAlignment="Left" Height="auto" Margin="0,0,0,0" Width="300" PreviewMouseDoubleClick="KlientDG_PreviewMouseDoubleClick" IsReadOnly="True" SelectionChanged="KlientDG_SelectionChanged">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Id" Binding="{Binding Path=Id}"/>
                 <DataGridTextColumn Header="Imie" Binding="{Binding Path=Name}"/>
@@ -26,9 +26,7 @@
             </DataGrid.ContextMenu>
         </DataGrid>
         <Grid Grid.Column="1">
-            <Viewbox>
-
-            </Viewbox>
+            <DataGrid x:Name="RezerwacjeDG"/>
         </Grid>
     </Grid>
 </UserControl>
