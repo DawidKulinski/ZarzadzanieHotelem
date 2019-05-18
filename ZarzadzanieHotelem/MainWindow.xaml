@@ -68,6 +68,8 @@
                 </StackPanel>
                 <TextBlock MouseLeftButtonDown="SprzetyMenuClick">Sprzęty</TextBlock>
                 <Separator Height="5" Width="Auto" />
+                <TextBlock MouseLeftButtonDown="SprzetyAddMenuClick">Dodaj</TextBlock>
+                <Separator Height="5" Width="Auto"/>
             </StackPanel>
         </Grid>
 

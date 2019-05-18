@@ -11,12 +11,19 @@
             <ColumnDefinition Width="300"/>
             <ColumnDefinition Width="auto"/>
         </Grid.ColumnDefinitions>
-        <DataGrid x:Name="SprzetyDG" HorizontalAlignment="Left" Height="auto" Margin="0,0,0,0" Width="300" IsReadOnly="True">
+        <DataGrid x:Name="SprzetyDG" HorizontalAlignment="Left" Height="auto" Margin="0,0,0,0" Width="300" IsReadOnly="True" PreviewMouseDoubleClick="SprzetyDG_PreviewMouseDoubleClick">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Id" Binding="{Binding Path=Id}"/>
                 <DataGridTextColumn Header="Name" Binding="{Binding Path=Name}"/>
                 <DataGridTextColumn Header="Count" Binding="{Binding Path=Count}"/>
             </DataGrid.Columns>
+            <DataGrid.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Dodaj" Click="SprzetyDGMenuAdd" />
+                    <MenuItem Header="Modyfikuj" Click="SprzetyDGMenuMod" />
+                    <MenuItem Header="Usuń" Click="SprzetyDGMenuDel" />
+                </ContextMenu>
+            </DataGrid.ContextMenu>
         </DataGrid>
         <Grid Grid.Column="1">
             <Viewbox>
