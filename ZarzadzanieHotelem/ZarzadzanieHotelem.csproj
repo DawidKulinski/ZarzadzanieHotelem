@@ -124,6 +124,9 @@
     <Compile Include="Views\SprzatanieAddView.xaml.cs">
       <DependentUpon>SprzatanieAddView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\SprzetyView.xaml.cs">
+      <DependentUpon>SprzetyView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\SprzatanieView.xaml.cs">
       <DependentUpon>SprzatanieView.xaml</DependentUpon>
     </Compile>
@@ -174,6 +177,10 @@
     <Page Include="Views\SprzatanieAddView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SprzetyView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\SprzatanieView.xaml">
       <SubType>Designer</SubType>

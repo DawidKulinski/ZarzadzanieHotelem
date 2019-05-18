@@ -66,9 +66,9 @@
                     <TextBlock  MouseLeftButtonDown="KlienciMenuAddClick">Dodaj</TextBlock>
                     <Separator Height="5" Width="Auto" />
                 </StackPanel>
+                <TextBlock MouseLeftButtonDown="SprzetyMenuClick">Sprzęty</TextBlock>
+                <Separator Height="5" Width="Auto" />
             </StackPanel>
-            
-            
         </Grid>
 
         <Grid Grid.Column="1">

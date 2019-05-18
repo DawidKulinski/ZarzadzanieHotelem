@@ -77,5 +77,10 @@ namespace ZarzadzanieHotelem
         {
             DataContext = new KlientAddView();
         }
+
+        private void SprzetyMenuClick(object sender, MouseButtonEventArgs e)
+        {
+            DataContext = new SprzetyView();
+        }
     }
 }
