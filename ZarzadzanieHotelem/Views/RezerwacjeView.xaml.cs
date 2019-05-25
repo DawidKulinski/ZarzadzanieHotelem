@@ -1,19 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using ZarzadzanieHotelem.Controller;
 using ZarzadzanieHotelem.Models;
+using ZarzadzanieHotelem.Utils;
 
 namespace ZarzadzanieHotelem.Views
 {
@@ -24,11 +16,22 @@ namespace ZarzadzanieHotelem.Views
     {
         private ReservationCotroller _reservationController;
 
+        private int CalculatePlaces()
+        {
+            using (var context = new SqliteContext())
+            {
+                var reservations = (int)Math.Ceiling(context.Reservations.Count() * 0.66);
+                return reservations;
+            }
+        }
+
         public RezerwacjeView()
         {
             InitializeComponent();
             _reservationController = new ReservationCotroller();
             ReloadReservations();
+
+            EstimatedPlaces.Text = CalculatePlaces().ToString();
         }
 
         private void ReloadReservations()

@@ -69,7 +69,7 @@ namespace ZarzadzanieHotelem.Views
                                 Count = int.TryParse(SprzetyAddIlosc.Text, out int temp1) ? temp1 : -1
                             });
                         }
-
+                    
                     }
                     }
                     catch (Exception er)

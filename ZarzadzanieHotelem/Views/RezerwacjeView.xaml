@@ -7,6 +7,10 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid x:Name="Rezerwacje" HorizontalAlignment="Stretch">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="300"/>
+        </Grid.ColumnDefinitions>
         <DataGrid x:Name="RezerwacjeDG" HorizontalAlignment="Left" Height="auto" Margin="0,0,0,0" Width="auto" PreviewMouseDoubleClick="RezerwacjeDG_PreviewMouseDoubleClick" IsReadOnly="True">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Pokój" Binding="{Binding Path=IdRoom}"/>
@@ -23,5 +27,8 @@
                 </ContextMenu>
             </DataGrid.ContextMenu>
         </DataGrid>
+        <Grid Grid.Column="1">
+            <TextBox Height="23" TextWrapping="Wrap" Text="" x:Name="EstimatedPlaces"/>
+        </Grid>
     </Grid>
 </UserControl>

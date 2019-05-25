@@ -37,6 +37,8 @@ namespace ZarzadzanieHotelem.Views
             cleaning.Binding = new Binding("CleanTime");
             SprzatanieDG.Columns.Add(cleaning);
 
+            
+
             using (var context = new SqliteContext())
             {
                 context.Workers.ToList()
