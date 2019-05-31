@@ -71,6 +71,19 @@ namespace ZarzadzanieHotelem.Utils
             context.Equipments.Add(new Equipment() { Name = "Wieszaki", Count = 22 });
             context.Equipments.Add(new Equipment() { Name = "Pościele", Count = 44 });
 
+            context.Customers.Add(new Customer() {Id = 1, LastName = "Kowalski", Name = "Andrzej"});
+            context.Customers.Add(new Customer() {Id = 2, LastName = "Kowalski", Name = "Jan"});
+            context.Customers.Add(new Customer() {Id = 3, LastName = "Testowe", Name = "Konto"});
+            context.Customers.Add(new Customer() {Id = 4, LastName = "Wróbel", Name = "Jan"});
+
+            context.SaveChanges();
+
+            context.Reservations.Add(new Reservation(){IdCustomer = 1, IdRoom = 1, StartTime = DateTime.MinValue, StopTime = DateTime.MaxValue, Price = 1234});
+            context.Reservations.Add(new Reservation(){IdCustomer = 2, IdRoom = 2, StartTime = DateTime.MinValue, StopTime = DateTime.MaxValue, Price = 1234});
+            context.Reservations.Add(new Reservation(){IdCustomer = 3, IdRoom = 3, StartTime = DateTime.MinValue, StopTime = DateTime.MaxValue, Price = 1234});
+            context.Reservations.Add(new Reservation(){IdCustomer = 4, IdRoom = 4, StartTime = DateTime.MinValue, StopTime = DateTime.MaxValue, Price = 1234});
+            context.Reservations.Add(new Reservation(){IdCustomer = 1, IdRoom = 1, StartTime = DateTime.MinValue, StopTime = DateTime.MaxValue, Price = 1234});
+
             context.SaveChanges();
         }
     }

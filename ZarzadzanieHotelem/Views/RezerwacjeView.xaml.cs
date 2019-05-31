@@ -20,7 +20,14 @@ namespace ZarzadzanieHotelem.Views
         {
             using (var context = new SqliteContext())
             {
-                var reservations = (int)Math.Ceiling(context.Reservations.Count() * 0.66);
+                var today = DateTime.Today;
+
+                var reservationCount = context.Reservations
+                    .Count(x =>
+                        x.StartTime < today &&
+                        today < x.StopTime);
+
+                var reservations = (int)Math.Ceiling(reservationCount * 0.66);
                 return reservations;
             }
         }
