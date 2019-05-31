@@ -32,6 +32,20 @@ namespace ZarzadzanieHotelem.Views
             }
         }
 
+        private int CalculateDishes()
+        {
+            using (var context = new SqliteContext())
+            {
+                var today = DateTime.Today;
+
+                var reservationCount = context.Reservations
+                    .Count(x =>
+                        x.StartTime < today &&
+                        today < x.StopTime);
+                return reservationCount;
+            }
+        }
+
         public RezerwacjeView()
         {
             InitializeComponent();
@@ -39,6 +53,7 @@ namespace ZarzadzanieHotelem.Views
             ReloadReservations();
 
             EstimatedPlaces.Text = CalculatePlaces().ToString();
+            EstimatedDishes.Text = CalculateDishes().ToString();
         }
 
         private void ReloadReservations()

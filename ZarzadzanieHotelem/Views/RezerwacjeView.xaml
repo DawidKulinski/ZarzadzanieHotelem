@@ -28,7 +28,11 @@
             </DataGrid.ContextMenu>
         </DataGrid>
         <Grid Grid.Column="1">
+            <TextBox Height="23" TextWrapping="Wrap" Text="" x:Name="EstimatedDishes" Margin="0,273,-0.2,153.6"/>
             <TextBox Height="23" TextWrapping="Wrap" Text="" x:Name="EstimatedPlaces"/>
+            <TextBlock Margin="0,251,-0.2,176.6"><Run Text="Liczba posiłków"/></TextBlock>
+            <TextBlock Margin="0,192,-0.2,236.6"><Run Text="Liczba miejsc"/></TextBlock>
+
         </Grid>
     </Grid>
 </UserControl>
