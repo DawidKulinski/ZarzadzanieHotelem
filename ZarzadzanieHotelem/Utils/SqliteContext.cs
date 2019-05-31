@@ -84,6 +84,12 @@ namespace ZarzadzanieHotelem.Utils
             context.Reservations.Add(new Reservation(){IdCustomer = 4, IdRoom = 4, StartTime = DateTime.MinValue, StopTime = DateTime.MaxValue, Price = 1234});
             context.Reservations.Add(new Reservation(){IdCustomer = 1, IdRoom = 1, StartTime = DateTime.MinValue, StopTime = DateTime.MaxValue, Price = 1234});
 
+            context.ParkingSlots.Add(new ParkingSlot() { Id = 1, SlotCode = "A1", Occupied = false });
+            context.ParkingSlots.Add(new ParkingSlot() { Id = 2, SlotCode = "A2", Occupied = true });
+            context.ParkingSlots.Add(new ParkingSlot() { Id = 3, SlotCode = "A3", Occupied = false });
+            context.ParkingSlots.Add(new ParkingSlot() { Id = 4, SlotCode = "A4", Occupied = false });
+            context.ParkingSlots.Add(new ParkingSlot() { Id = 5, SlotCode = "A5", Occupied = false });
+
             context.SaveChanges();
         }
     }

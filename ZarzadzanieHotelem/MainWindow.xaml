@@ -19,7 +19,7 @@
     
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="100" />
+            <ColumnDefinition Width="105" />
             <ColumnDefinition Width="10" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
@@ -69,6 +69,11 @@
                 <TextBlock MouseLeftButtonDown="SprzetyMenuClick">Sprzęty</TextBlock>
                 <Separator Height="5" Width="Auto" />
                 <TextBlock MouseLeftButtonDown="SprzetyAddMenuClick">Dodaj</TextBlock>
+                <Separator Height="5" Width="Auto"/>
+            
+                <TextBlock MouseLeftButtonDown="ParkingMenuClick">Miejsca parkingowe</TextBlock>
+                <Separator Height="5" Width="Auto" />
+                <TextBlock MouseLeftButtonDown="ParkingAddMenuClick">Dodaj</TextBlock>
                 <Separator Height="5" Width="Auto"/>
             </StackPanel>
         </Grid>

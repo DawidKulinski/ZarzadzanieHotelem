@@ -1,0 +1,39 @@
+﻿<UserControl x:Class="ZarzadzanieHotelem.Views.ParkingView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ZarzadzanieHotelem.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="700">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300"/>
+            <ColumnDefinition Width="auto"/>
+        </Grid.ColumnDefinitions>
+        <DataGrid x:Name="ParkingDG" HorizontalAlignment="Left" Height="auto" Width="300" IsReadOnly="True" PreviewMouseDoubleClick="ParkingDG_PreviewMouseDoubleClick">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Id" Binding="{Binding Path=Id}"/>
+                <DataGridTextColumn Header="SlotCode" Binding="{Binding Path=SlotCode}"/>
+                <DataGridTextColumn Header="Occupied" Binding="{Binding Path=Occupied}"/>
+            </DataGrid.Columns>
+            <DataGrid.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Dodaj" Click="ParkingDGMenuAdd" />
+                    <MenuItem Header="Modyfikuj" Click="ParkingDGMenuMod" />
+                    <MenuItem Header="Usuń" Click="ParkingDGMenuDel" />
+                </ContextMenu>
+            </DataGrid.ContextMenu>
+        </DataGrid>
+        <Grid Grid.Column="1">
+            <Viewbox>
+
+            </Viewbox>
+        </Grid>
+        <Grid Grid.Column="1">
+            <StackPanel>
+                <CheckBox x:Name="ParkingShowFree" Checked="ParkingShowFree_Checked" Unchecked="ParkingShowFree_Unchecked" Height="55" Content="Pokaż wolne" Margin="20" />
+            </StackPanel>
+        </Grid>
+    </Grid>
+</UserControl>

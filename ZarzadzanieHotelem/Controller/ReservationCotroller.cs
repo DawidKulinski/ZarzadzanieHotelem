@@ -16,14 +16,6 @@ namespace ZarzadzanieHotelem.Controller
         {
             using (var conn = new SqliteContext())
             {
-                //conn.Customers.Add(new Customer()
-                //{
-                //    Id = 1,
-                //    Name = "Test",
-                //    LastName = "Testowy"
-                //});
-                //conn.SaveChanges();
-
                 Customer cus = conn.Customers.FirstOrDefault(p => p.Id == rez.IdCustomer);
                 Room room = conn.Rooms.FirstOrDefault(p => p.Id == rez.IdRoom);
                 rez.Customer = cus ?? throw new Exception("Nie ma klienta o ID: " + rez.IdCustomer);
@@ -40,15 +32,6 @@ namespace ZarzadzanieHotelem.Controller
 
                 rez.StartTime = rez.StartTime.AddHours(15);
                 rez.StopTime = rez.StopTime.AddHours(10);
-
-                //if (conn.Reservations.Any(p => p.IdRoom == rez.IdRoom && (p.StartTime == rez.StartTime || p.StartTime == rez.StopTime
-                //|| p.StopTime == rez.StopTime || p.StopTime == rez.StartTime
-                //|| (p.StartTime > rez.StartTime && p.StartTime < rez.StopTime)
-                //|| (p.StartTime < rez.StartTime && p.StopTime > rez.StartTime)
-                //|| (p.StartTime > rez.StartTime && p.StopTime < rez.StopTime)
-                //|| (p.StartTime < rez.StartTime && p.StopTime > rez.StopTime))))
-                //    throw new Exception("W tym terminie pokój jest już zarezerwowany");
-
 
                 conn.Reservations.Add(rez);
                 AddCleaning(rez, conn);
@@ -102,14 +85,6 @@ namespace ZarzadzanieHotelem.Controller
                          || (p.StartTime.Date > rez.StartTime.Date && p.StopTime.Date < rez.StopTime.Date)
                          || (p.StartTime.Date < rez.StartTime.Date && p.StopTime.Date > rez.StopTime.Date)))
                         throw new Exception("W tym terminie pokój jest już zarezerwowany, nie można zmienić terminu rezerwacji");
-
-                    //if (conn.Reservations.Any(p => p.Id != rez.Id && p.IdRoom == rez.IdRoom && (p.StartTime == rez.StartTime || p.StartTime == rez.StopTime
-                    //     || p.StopTime == rez.StopTime || p.StopTime == rez.StartTime
-                    //     || (p.StartTime > rez.StartTime && p.StartTime < rez.StopTime)
-                    //     || (p.StartTime < rez.StartTime && p.StopTime > rez.StartTime)
-                    //     || (p.StartTime > rez.StartTime && p.StopTime < rez.StopTime)
-                    //     || (p.StartTime < rez.StartTime && p.StopTime > rez.StopTime))))
-                    //    throw new Exception("W tym terminie pokój jest już zarezerwowany, nie można zmienić terminu rezerwacji");
 
                     rezToChange.StartTime = rezToChange.StartTime.AddHours(15);
                     rezToChange.StopTime = rezToChange.StopTime.AddHours(10);

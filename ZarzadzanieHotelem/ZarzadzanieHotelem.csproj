@@ -83,6 +83,7 @@
     <Compile Include="Controller\CleaningController.cs" />
     <Compile Include="Controller\CustomerController.cs" />
     <Compile Include="Controller\EquipmentController.cs" />
+    <Compile Include="Controller\ParkingController.cs" />
     <Compile Include="Controller\ReservationCotroller.cs" />
     <Compile Include="Controller\RoomController.cs" />
     <Compile Include="Controller\WorkerController.cs" />
@@ -125,8 +126,14 @@
     <Compile Include="Views\SprzatanieAddView.xaml.cs">
       <DependentUpon>SprzatanieAddView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\ParkingAddView.xaml.cs">
+      <DependentUpon>ParkingAddView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\SprzetyAddView.xaml.cs">
       <DependentUpon>SprzetyAddView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ParkingView.xaml.cs">
+      <DependentUpon>ParkingView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\SprzetyView.xaml.cs">
       <DependentUpon>SprzetyView.xaml</DependentUpon>
@@ -182,9 +189,17 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\ParkingAddView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\SprzetyAddView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ParkingView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\SprzetyView.xaml">
       <Generator>MSBuild:Compile</Generator>

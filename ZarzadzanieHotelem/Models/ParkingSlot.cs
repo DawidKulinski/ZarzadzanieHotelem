@@ -16,6 +16,7 @@ namespace ZarzadzanieHotelem.Models
         [Key]
         public int Id { get; set; }
         public string SlotCode { get; set; }
+        public bool Occupied { get; set; }
         public virtual ICollection<ParkingReservation> ParkingReservation { get; set; }
     }
 }

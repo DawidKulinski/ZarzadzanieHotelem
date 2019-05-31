@@ -87,5 +87,15 @@ namespace ZarzadzanieHotelem
         {
             DataContext = new SprzetyAddView();
         }
+
+        private void ParkingMenuClick(object sender, MouseButtonEventArgs e)
+        {
+            DataContext = new ParkingView();
+        }
+
+        private void ParkingAddMenuClick(object sender, MouseButtonEventArgs e)
+        {
+            DataContext = new ParkingAddView();
+        }
     }
 }
