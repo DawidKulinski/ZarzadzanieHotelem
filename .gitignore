@@ -344,4 +344,5 @@ healthchecksdb
 # Backup folder for Package Reference Convert tool in Visual Studio 2017
 MigrationBackup/
 
-App.config
+# App.config
+ZarzadzanieHotelem/App.config
